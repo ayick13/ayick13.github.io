@@ -50,36 +50,26 @@
     }
     .footer {
       padding: 20px 0;
-      position: relative; /* Tambahkan ini untuk memastikan footer memiliki posisi relatif */
+      position: relative;
     }
     .back-to-top {
       position: fixed;
-      bottom: 80px; /* Sesuaikan jarak dari bawah */
+      bottom: 80px;
       right: 20px;
       display: none;
-      z-index: 1000; /* Pastikan tombol berada di atas elemen lain */
-    }
-    .floating-box {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
       z-index: 1000;
     }
-    .floating-box h4 {
-      margin-bottom: 15px;
-      font-size: 18px;
-      color: #333;
+    .contact-form {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 600px;
     }
-    .floating-box .form-control, .floating-box .form-select {
-      margin-bottom: 10px;
-    }
-    .floating-box .btn {
-      margin-top: 10px;
+    .contact-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
     }
     .portfolio-img {
       cursor: pointer;
@@ -466,16 +456,30 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Formulir Kontak -->
   <section id="contact" class="container my-5">
-    <h2 class="text-center mb-4">Hubungi Kami</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <a href="https://wa.me/6281330763633" class="btn btn-success btn-lg w-100"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      </div>
-      <div class="col-md-6">
-        <a href="mailto:ariftirtana010184@gmail.com" class="btn btn-danger btn-lg w-100"><i class="fas fa-envelope"></i> Email</a>
-      </div>
+    <div class="contact-form">
+      <h2 class="text-center mb-4">Hubungi Kami</h2>
+      <form id="contactForm">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="nama" placeholder="Nama" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <select class="form-select" id="paket" required>
+            <option value="" disabled selected>Pilih Paket</option>
+            <option value="Basic">Basic</option>
+            <option value="Standar">Standar</option>
+            <option value="Premium">Premium</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" id="pesan" rows="3" placeholder="Pesan Anda" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Kirim via WhatsApp</button>
+      </form>
     </div>
   </section>
 
@@ -488,30 +492,6 @@
 
   <!-- Back to Top Button -->
   <a href="#" class="btn btn-primary back-to-top"><i class="fas fa-arrow-up"></i></a>
-
-  <!-- Formulir Kontak -->
-  <div class="floating-box">
-    <form id="contactForm">
-      <div class="mb-3">
-        <input type="text" class="form-control" id="nama" placeholder="Nama" required>
-      </div>
-      <div class="mb-3">
-        <input type="email" class="form-control" id="email" placeholder="Email" required>
-      </div>
-      <div class="mb-3">
-        <select class="form-select" id="paket" required>
-          <option value="" disabled selected>Pilih Paket</option>
-          <option value="Basic">Basic</option>
-          <option value="Standar">Standar</option>
-          <option value="Premium">Premium</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <textarea class="form-control" id="pesan" rows="3" placeholder="Pesan Anda" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-success w-100">Kirim via WhatsApp</button>
-    </form>
-  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
