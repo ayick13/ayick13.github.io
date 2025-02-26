@@ -50,28 +50,36 @@
     }
     .footer {
       padding: 20px 0;
+      position: relative; /* Tambahkan ini untuk memastikan footer memiliki posisi relatif */
     }
     .back-to-top {
       position: fixed;
-      bottom: 20px;
+      bottom: 80px; /* Sesuaikan jarak dari bawah */
       right: 20px;
       display: none;
+      z-index: 1000; /* Pastikan tombol berada di atas elemen lain */
     }
     .floating-box {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #3498db;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      z-index: 1000;
     }
-    .floating-box:hover .hidden-text {
-      display: block;
+    .floating-box h4 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: #333;
     }
-    .hidden-text {
-      display: none;
+    .floating-box .form-control, .floating-box .form-select {
+      margin-bottom: 10px;
+    }
+    .floating-box .btn {
+      margin-top: 10px;
     }
     .portfolio-img {
       cursor: pointer;
@@ -94,7 +102,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="vector.png" alt="jasa pembuatan website" style="height: 40px;"> Jasa Pembuatan website <!-- Ganti vector.png dengan path ke file logo Anda -->
+        <img src="vector.png" alt="jasa pembuatan website" style="height: 40px;"> Jasa Pembuatan website
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -481,13 +489,28 @@
   <!-- Back to Top Button -->
   <a href="#" class="btn btn-primary back-to-top"><i class="fas fa-arrow-up"></i></a>
 
-  <!-- Floating Box -->
+  <!-- Formulir Kontak -->
   <div class="floating-box">
-    <span>Konsultasi Gratis!</span>
-    <div class="hidden-text">
-      <textarea class="form-control mb-2" placeholder="Tulis pesan Anda"></textarea>
-      <a href="https://wa.me/6281330763633" class="btn btn-success btn-sm">Kirim</a>
-    </div>
+    <form id="contactForm">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="nama" placeholder="Nama" required>
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Email" required>
+      </div>
+      <div class="mb-3">
+        <select class="form-select" id="paket" required>
+          <option value="" disabled selected>Pilih Paket</option>
+          <option value="Basic">Basic</option>
+          <option value="Standar">Standar</option>
+          <option value="Premium">Premium</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <textarea class="form-control" id="pesan" rows="3" placeholder="Pesan Anda" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Kirim via WhatsApp</button>
+    </form>
   </div>
 
   <!-- Bootstrap JS -->
@@ -511,6 +534,22 @@
     const testimonialCarousel = new bootstrap.Carousel('#testimonialCarousel', {
       interval: 3000,
       pause: false
+    });
+
+    // Formulir WhatsApp
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById('nama').value;
+      const email = document.getElementById('email').value;
+      const paket = document.getElementById('paket').value;
+      const pesan = document.getElementById('pesan').value;
+
+      const whatsappMessage = `Halo, saya ${nama}.\nEmail: ${email}\nPaket yang dipilih: ${paket}\nPesan: ${pesan}`;
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/6281330763633?text=${encodedMessage}`;
+
+      window.open(whatsappUrl, '_blank');
     });
   </script>
 </body>
