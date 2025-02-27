@@ -145,6 +145,46 @@
     margin-top: 10px; /* Jarak dari Info Box */
 	text-align: center;
   }
+   /* Container untuk grid logo */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Setiap item logo */
+    .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Efek hover pada logo */
+    .logo-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Gaya gambar logo */
+    .logo-item img {
+      max-width: 100%;
+      height: auto;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    /* Efek hover pada gambar logo */
+    .logo-item:hover img {
+      filter: grayscale(0%);
+    }
   
 </style>
 </head>
@@ -234,9 +274,70 @@
       </div>
     </div>
   </section>
-
-
-
+		
+		<!-- Section untuk Logo Teknologi -->
+  <section id="tech-logos" class="container my-5">
+    <h2 class="text-center mb-4">Teknologi yang Kami Gunakan</h2>
+    <div class="logo-grid">
+      <!-- Logo WordPress -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/WordPress_Logotype_Arternative.svg/300px-WordPress_Logotype_Arternative.svg.png" alt="WordPress" class="img-fluid">
+      </div>
+      <!-- Logo Cloudflare -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png" alt="Cloudflare" class="img-fluid">
+      </div>
+      <!-- Logo GitHub -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" class="img-fluid">
+      </div>
+      <!-- Logo Google -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="img-fluid">
+      </div>
+      <!-- Logo Microsoft -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="img-fluid">
+      </div>
+      <!-- Logo Intel -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Intel_logo_%282020%2C_dark_blue%29.svg/220px-Intel_logo_%282020%2C_dark_blue%29.svg.png" alt="Intel" class="img-fluid">
+      </div>
+      <!-- Logo Nvidia -->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a4/NVIDIA_logo.svg/200px-NVIDIA_logo.svg.png" alt="Nvidia" class="img-fluid">
+      </div>
+      <!-- Logo Bootstrap-->
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/220px-Bootstrap_logo.svg.png" alt="bootstrap" class="img-fluid">
+      </div>
+	  <!-- Logo font-awesome/6 -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Font_Awesome_5_logo_black.svg/250px-Font_Awesome_5_logo_black.svg.png" alt="FontAwesome" class="img-fluid">
+      </div>
+	  <!-- Logo Photoshop -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/120px-Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop" class="img-fluid">
+      </div>
+	  <!-- Logo CorelDraw -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/CorelDraw_logo_%282%29.svg/180px-CorelDraw_logo_%282%29.svg.png" alt="CorelDraw" class="img-fluid">
+      </div>
+	  <!-- Logo JQuery-Logo -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/JQuery-Logo.svg/220px-JQuery-Logo.svg.png" alt="JQuery-Logo" class="img-fluid">
+      </div>
+	  <!-- Logo JQuery-W3Schools -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/100px-W3Schools_logo.svg.png" alt="W3Schools" class="img-fluid">
+      </div>
+	  <!-- Logo Meta_Platforms_Inc -->
+	  <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/220px-Meta_Platforms_Inc._logo.svg.png" alt="W3Schools" class="img-fluid">
+      </div>
+    </div>
+  </section>
+		
 <!-- Horizontal Line dengan Ikon Bintang Unik -->
 <div class="container my-5 text-center">
   <div class="position-relative">
