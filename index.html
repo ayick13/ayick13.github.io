@@ -94,7 +94,35 @@
     font-size: 14px;
     font-weight: bold;
   }
-  </style>
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .fa-star {
+    color: #ffea03; /* Warna kuning*/
+    font-size: 24px; /* Ukuran ikon */
+    transition: all 0.3s ease; /* Efek transisi */
+  }
+
+  .fa-star:hover {
+    transform: scale(1.2); /* Membesar saat dihover */
+    text-shadow: 0 0 20px rgba(52, 152, 219, 1); /* Glow saat dihover */
+  }
+
+  hr {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3498db, #8e44ad); /* Gradien warna */
+    border-radius: 10px; /* Sudut melengkung */
+  }
+  background: repeating-linear-gradient(90deg, #3498db, #3498db 10px, transparent 10px, transparent 20px);
+  
+</style>
 </head>
 <body>
   <!-- Navbar -->
@@ -115,6 +143,8 @@
           <li class="nav-item"><a class="nav-link" href="#testimonial">Testimonial</a></li>
           <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+          	
+          <li class="nav-item"><a class="nav-link" href="#skills">Keahlian</a></li>
         </ul>
       </div>
     </div>
@@ -143,7 +173,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Fitur Section -->
   <section id="features" class="container my-5">
     <h2 class="text-center mb-4">Fitur Kami</h2>
@@ -181,6 +211,27 @@
     </div>
   </section>
 
+<!-- Horizontal Line dengan Ikon Bintang Unik -->
+<div class="container my-5 text-center">
+  <div class="position-relative">
+    <!-- Garis Horizontal dengan Gradien dan Border Radius -->
+    <hr class="my-5" style="
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3498db, #8e44ad);
+      border-radius: 10px;
+    ">
+    <!-- Ikon Bintang dengan Animasi dan Shadow -->
+    <div class="position-absolute top-50 start-50 translate-middle px-3">
+      <i class="fas fa-star text-warning" style="
+        font-size: 24px;
+        animation: spin 2s infinite linear;
+        text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+      "></i>
+    </div>
+  </div>
+</div>
+  
   <!-- Pricing Section -->
   <section id="pricing" class="container my-5">
     <h2 class="text-center mb-4">Paket Harga</h2>
@@ -241,6 +292,7 @@
       </div>
     </div>
   </section>
+  
 <!-- Progress Bar Skill Section -->
 <section id="skills" class="container my-5">
   <h2 class="text-center mb-4">Keahlian Saya</h2>
@@ -271,6 +323,8 @@
     </div>
   </div>
 </section>
+
+
   <!-- Portfolio Section -->
   <section id="portfolio" class="container my-5">
     <h2 class="text-center mb-4">Portfolio Kami</h2>
