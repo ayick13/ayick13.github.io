@@ -117,7 +117,7 @@
   hr {
     border: 0;
     height: 2px;
-    background: linear-gradient(90deg, #3498db, #8e44ad); /* Gradien warna */
+    background: linear-gradient(90deg, #3498db, #fc0349); /* Gradien warna */
     border-radius: 10px; /* Sudut melengkung */
   }
   background: repeating-linear-gradient(90deg, #3498db, #3498db 10px, transparent 10px, transparent 20px);
@@ -218,19 +218,19 @@
     <hr class="my-5" style="
       border: 0;
       height: 2px;
-      background: linear-gradient(90deg, #3498db, #8e44ad);
+      background: linear-gradient(90deg, #3498db, #fc0349);
       border-radius: 10px;
     ">
     <!-- Ikon Bintang dengan Animasi dan Shadow -->
-    <div class="position-absolute top-50 start-50 translate-middle px-3">
+  <!-- sementara nonaktif <div class="position-absolute top-50 start-50 translate-middle px-3">
       <i class="fas fa-star text-warning" style="
         font-size: 24px;
         animation: spin 2s infinite linear;
         text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
       "></i>
-    </div>
+    </div> -->
   </div>
-</div>
+</div> 
   
   <!-- Pricing Section -->
   <section id="pricing" class="container my-5">
@@ -292,6 +292,27 @@
       </div>
     </div>
   </section>
+  
+  <!-- Horizontal Line dengan Ikon Bintang Unik -->
+<div class="container my-5 text-center">
+  <div class="position-relative">
+    <!-- Garis Horizontal dengan Gradien dan Border Radius -->
+    <hr class="my-5" style="
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3498db, #fc0349);
+      border-radius: 10px;
+    ">
+    <!-- Ikon Bintang dengan Animasi dan Shadow -->
+  <!-- sementara nonaktif <div class="position-absolute top-50 start-50 translate-middle px-3">
+      <i class="fas fa-star text-warning" style="
+        font-size: 24px;
+        animation: spin 2s infinite linear;
+        text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+      "></i>
+    </div> -->
+  </div>
+</div> 
   
 <!-- Progress Bar Skill Section -->
 <section id="skills" class="container my-5">
@@ -359,7 +380,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 1. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 1.  <img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -372,7 +393,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 2. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 2. <img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -385,7 +406,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 3. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 3.<img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -398,7 +419,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 4. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 4. <img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -411,7 +432,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 5. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 5.<img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -424,7 +445,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Deskripsi proyek 6. <a href="#">Lihat Proyek</a></p>
+          <p>Deskripsi proyek 6. <img src="placeholder.png" class="img-fluid portfolio-img"> <a href="#">Lihat Proyek</a></p>
         </div>
       </div>
     </div>
@@ -585,13 +606,19 @@
         </div>
         <button type="submit" class="btn btn-success w-100">Kirim via WhatsApp</button>
       </form>
+	  <div class="form-check mb-3">
+  <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+  <label class="form-check-label" for="privacyCheck">
+    Saya setuju dengann <a href="privacy-policy.html">Kebijakan Privasi</a>.
+  </label>
+</div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer text-center">
     <div class="container">
-      <p>Cpoyright &copy; 2013 - <span id="currentYear"></span> ariftirtana.my.id - Jasa Pembuatan Website | Design by: <a href="https://www.ariftirtana.com/jasa-pembuatan-website/" target="_blank">ariftirtana.com</a> All Rights Reserved.</p>
+      <p>Cpoyright &copy; 2013 - <span id="currentYear"></span> ariftirtana.my.id - Jasa Pembuatan Website | Design by: <a href="https://www.ariftirtana.com/jasa-pembuatan-website/" target="_blank">ariftirtana.com</a> All Rights Reserved. <a href="privacy-policy.html">Kebijakan Privasi</a></p>
     </div>
   </footer>
 
