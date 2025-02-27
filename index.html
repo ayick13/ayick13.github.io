@@ -710,7 +710,7 @@
       const data = await response.json();
       document.getElementById('ip-address').textContent = data.ip;
     } catch (error) {
-      document.getElementById('ip-address').textContent = 'Tidak dapat mengambil IP address (kemungkinan anda menggunakan Private Browser)';
+      document.getElementById('ip-address').textContent = 'Tidak dapat mengambil IP address <span style="font-size:10px">(kemungkinan anda menggunakan Private Browser)</span>';
     }
   }
 
