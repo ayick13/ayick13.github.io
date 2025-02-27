@@ -703,14 +703,15 @@
       window.open(whatsappUrl, '_blank');
     });
 	
-  // Fungsi untuk mengambil IP address menggunakan layanan ipify
+   // Fungsi untuk mengambil IP address menggunakan layanan ipify
   async function getIPAddress() {
     try {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
       document.getElementById('ip-address').textContent = data.ip;
     } catch (error) {
-      document.getElementById('ip-address').textContent = 'Tidak dapat mengambil IP address <span style="font-size:10px">(kemungkinan anda menggunakan Private Browser)</span>';
+      // Menampilkan pesan error dengan teks kecil
+      document.getElementById('ip-address').innerHTML = 'Tidak dapat mengambil IP address <span style="font-size: 10px;">(kemungkinan Anda menggunakan Private Browser)</span>';
     }
   }
 
