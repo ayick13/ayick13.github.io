@@ -121,6 +121,30 @@
     border-radius: 10px; /* Sudut melengkung */
   }
   background: repeating-linear-gradient(90deg, #3498db, #3498db 10px, transparent 10px, transparent 20px);
+   
+    .info-box {
+    background-color: #fff; /* Background putih */
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #3498db; /* Border biru */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow untuk efek elegan */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .info-box h3 {
+    margin-bottom: 15px;
+    color: #3498db; /* Warna biru untuk judul */
+  }
+  .info-box p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .small-text {
+    font-size: 12px; /* Ukuran teks kecil */
+    color: #6c757d; /* Warna teks abu-abu */
+    margin-top: 10px; /* Jarak dari Info Box */
+	text-align: center;
+  }
   
 </style>
 </head>
@@ -614,6 +638,20 @@
 </div>
     </div>
   </section>
+	
+		<!-- Info Box untuk IP Address dan User Agent -->
+<section id="info-box" class="container my-5">
+  <div class="info-box bg-white p-4 rounded text-center" style="border: 2px solid #42413c;">
+    <h3>Info Pengunjung</h3>
+    <p><strong>IP Address:</strong> <span id="ip-address">Mengambil data...</span></p>
+    <p><strong>User Agent:</strong> <span id="user-agent">Mengambil data...</span></p>
+  </div>
+  
+  <!-- Paragraf dengan teks kecil -->
+  <p class="small text-danger mt-3" style="font-size: 12px;">
+    Demi menjaga keamanan dan mencegah hal-hal yang tidak diinginkan, kami melakukan perekaman terhadap semua interaksi yang terjadi di website kami. Hal ini bertujuan untuk memastikan keamanan data dan memberikan pengalaman yang lebih baik bagi seluruh pengguna.
+  </p>
+</section>
 
   <!-- Footer -->
   <footer class="footer text-center">
@@ -664,6 +702,29 @@
 
       window.open(whatsappUrl, '_blank');
     });
+	
+  // Fungsi untuk mengambil IP address menggunakan layanan ipify
+  async function getIPAddress() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      document.getElementById('ip-address').textContent = data.ip;
+    } catch (error) {
+      document.getElementById('ip-address').textContent = 'Tidak dapat mengambil IP address';
+    }
+  }
+
+  // Fungsi untuk mengambil User Agent dari browser
+  function getUserAgent() {
+    const userAgent = navigator.userAgent;
+    document.getElementById('user-agent').textContent = userAgent;
+  }
+
+  // Panggil fungsi saat halaman dimuat
+  window.onload = function() {
+    getIPAddress();
+    getUserAgent();
+  };
   </script>
 </body>
 </html>
