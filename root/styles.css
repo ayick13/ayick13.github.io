@@ -244,3 +244,36 @@ body {
 		  text-decoration: underline;
 		 
 		}
+.seo-guide {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.seo-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.seo-list li {
+  padding-left: 1.8rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.seo-list li:before {
+  content: "✓";
+  color: #198754;
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+.intro-card {
+  border-left: 4px solid #198754;
+}
+
+.chapter h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #198754;
+  display: inline-block;
+}
