@@ -84,7 +84,13 @@ function sendWA(package) {
         ]
     };
     
-    const message = `Halo, saya tertarik berlangganan paket *${package}*%0A%0A📋 *Detail Paket:*%0A${features[package].join('%0A• ')}%0A%0A🚀 Mohon info langkah selanjutnya!`;
+    // Membuat pesan dengan newline (\n) dan bullet (•)
+    const message = `Halo, saya tertarik berlangganan paket *${package}*\n\n📋 *Detail Paket:*\n${features[package]
+        .map(fitur => `• ${fitur}`) // Tambahkan bullet di setiap fitur
+        .join('\n')}\n\n🚀 Mohon info langkah selanjutnya!`;
     
-    window.open(`https://wa.me/6281330763633?text=${encodeURIComponent(message)}`, '_blank');
+    // Encode seluruh pesan untuk URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    window.open(`https://wa.me/6281330763633?text=${encodedMessage}`, '_blank');
 }
