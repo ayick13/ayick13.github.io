@@ -49,10 +49,3 @@ window.onload = function() {
   getIPAddress();
   getUserAgent();
 };
-
-function sendWA(packageName, features) {
-    const phoneNumber = '6281330763633';
-    const message = `Halo, saya tertarik dengan paket *${packageName}*.\nFitur yang termasuk:\n- ${features.join('\n- ')}\n\nBisa dibantu lebih lanjut?`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-}
