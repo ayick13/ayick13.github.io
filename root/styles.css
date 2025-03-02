@@ -34,13 +34,45 @@ body {
       color: var(--primary-color);
     }
 
-    .pricing-card {
-      transition: transform 0.3s ease;
-    }
-
-    .pricing-card:hover {
-      transform: scale(1.05);
-    }
+       .pricing-card {
+            transition: all 0.3s;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .premium-card {
+            background: linear-gradient(135deg, #007bff, #00a8ff);
+            color: white;
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #28a745;
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+        }
+        
+       	 .feature-icon-card {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        } 
 
     .testimonial-slider {
       background-color: #ecf0f1;
@@ -188,22 +220,7 @@ body {
     .logo-item:hover img {
       filter: grayscale(0%);
     }
-
-
-	.best-seller-label {
-	  position: absolute;
-	  top: 10px;
-	  right: -30px;
-	  background: var(--white);
-	  color: #000;
-	  padding: 5px 40px;
-	  transform: rotate(45deg);
-	  font-size: 0.9rem;
-	  font-weight: bold;
-	  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-	  z-index: 1;
-	}
-
+    
 	.card-header {
 	  overflow: hidden;
 	}

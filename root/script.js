@@ -49,3 +49,42 @@ window.onload = function() {
   getIPAddress();
   getUserAgent();
 };
+function sendWA(package) {
+    const features = {
+        'Basic': ['5 Halaman Website', 'SSL Gratis', 'Optimasi SEO Dasar'],
+        'Standard': ['10 Halaman Website', 'Blog Integrasi', 'Optimasi SEO Premium', 'Basic E-commerce'],
+        'Premium': ['Halaman Unlimited', 'E-commerce Lengkap', 'SEO Advanced', 'Prioritas Support']
+    };
+    
+    const message = `Halo, saya tertarik dengan paket ${package}%0A%0AFitur yang termasuk:%0A${features[package].join('%0A')}`;
+    
+    window.open(`https://wa.me/6281330763633?text=${message}`, '_blank');
+}
+function sendWA(package) {
+    const features = {
+        'Starter': [
+            '5 Halaman Website (Home, About, Services, Portfolio, Contact)',
+            'Domain Gratis 1 Tahun (.com/.net/.org)',
+            'Mobile Responsive Optimal',
+            'SSL Gratis & Hosting Premium'
+        ],
+        'Professional': [
+            '15 Halaman Website + Blog & News Section',
+            'CMS Integrasi (WordPress/Shopify)',
+            'E-commerce Basic (Hingga 50 produk)',
+            'Maintenance Bulanan & Backup Rutin',
+            'Optimasi SEO Premium'
+        ],
+        'Enterprise': [
+            'Halaman Unlimited + Sistem Membership',
+            'E-commerce Advanced + Payment Gateway',
+            'Prioritas Support 24/7 (Response <1 jam)',
+            'Custom UI/UX Design',
+            'Analytics & Reporting Bulanan'
+        ]
+    };
+    
+    const message = `Halo, saya tertarik berlangganan paket *${package}*%0A%0A📋 *Detail Paket:*%0A${features[package].join('%0A• ')}%0A%0A🚀 Mohon info langkah selanjutnya!`;
+    
+    window.open(`https://wa.me/6281330763633?text=${encodeURIComponent(message)}`, '_blank');
+}
