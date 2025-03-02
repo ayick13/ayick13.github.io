@@ -160,133 +160,75 @@
     </div>
   </div>
 
-  <section class="container py-5">
-    <div class="row g-4">
-        <!-- Essential Package -->
-        <div class="col-lg-4">
-            <div class="pricing-card h-100">
-                <div class="price-accent"></div>
-                <div class="p-4 position-relative">
-                    <h3 class="fw-bold mb-3">Essential</h3>
-                    <div class="price mb-4">Rp 799K<span class="text-muted fs-6">/bulan</span></div>
-                    
-                    <div class="category-title"><i class="fas fa-globe me-2"></i>Website</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>10 Halaman Website</li>
-                        <li><i class="fas fa-check"></i>3 GB Storage</li>
-                        <li><i class="fas fa-check"></i>Bandwidth 50GB</li>
-                        <li><i class="fas fa-check"></i>SSL Gratis</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-shield-alt me-2"></i>Keamanan</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Firewall Dasar</li>
-                        <li><i class="fas fa-check"></i>Backup Mingguan</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-headset me-2"></i>Dukungan</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Dukungan Email</li>
-                        <li><i class="fas fa-check"></i>Response Time 24 jam</li>
-                    </ul>
-
-                    <button class="btn btn-outline-primary w-100 mt-4" onclick="sendWA('Essential', ['10 Halaman Website','3 GB Storage','Bandwidth 50GB','SSL Gratis','Firewall Dasar','Backup Mingguan','Dukungan Email','Response Time 24 jam'])">
-                        Pilih Paket <i class="fas fa-arrow-right ms-2"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- Pricing Section -->
+  <section id="pricing" class="container my-5">
+    <h2 class="text-center mb-4">Paket Harga</h2>
+    <div class="row">
+      <!-- Paket Basic -->
+      <div class="col-md-4">
+        <div class="card pricing-card text-center">
+          <div class="card-header bg-primary text-white position-relative">
+            <h3>Basic</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Rp 2.000.000</h4>
+            <ul class="list-unstyled">
+              <li>5 Halaman</li>
+              <li>Free Domain 1 Tahun</li>
+              <li>Desain Sederhana</li>
+              <li>SEO Basic</li>
+              <li>Hosting 1 Tahun</li>
+              <li>CMS WordPress</li>
+            </ul>
+            <a href="https://wa.me/6281330763633" class="btn btn-primary">Pilih Paket</a>
+          </div>
         </div>
+      </div>
 
-        <!-- Professional Package -->
-        <div class="col-lg-4">
-            <div class="pricing-card h-100 position-relative">
-                <div class="popular-badge">Paling Populer!</div>
-                <div class="price-accent"></div>
-                <div class="p-4">
-                    <h3 class="fw-bold mb-3">Professional</h3>
-                    <div class="price mb-4">Rp 1,999K<span class="text-muted fs-6">/bulan</span></div>
-                    
-                    <div class="category-title"><i class="fas fa-rocket me-2"></i>Website Pro</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Halaman Unlimited</li>
-                        <li><i class="fas fa-check"></i>10 GB Storage</li>
-                        <li><i class="fas fa-check"></i>Bandwidth 200GB</li>
-                        <li><i class="fas fa-check"></i>Domain Gratis (.com)</li>
-                        <li><i class="fas fa-check"></i>CDN Global</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-lock me-2"></i>Keamanan+</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Firewall Premium</li>
-                        <li><i class="fas fa-check"></i>Backup Harian</li>
-                        <li><i class="fas fa-check"></i>Malware Scanning</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-chart-line me-2"></i>Optimasi</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>SEO Premium</li>
-                        <li><i class="fas fa-check"></i>Analytics Pro</li>
-                        <li><i class="fas fa-check"></i>Uptime 99.9%</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-users me-2"></i>Tim</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>5 Anggota Tim</li>
-                        <li><i class="fas fa-check"></i>Role Management</li>
-                    </ul>
-
-                    <button class="btn btn-primary w-100 mt-4" onclick="sendWA('Professional', ['Halaman Unlimited','10 GB Storage','Bandwidth 200GB','Domain Gratis (.com)','CDN Global','Firewall Premium','Backup Harian','Malware Scanning','SEO Premium','Analytics Pro','Uptime 99.9%','5 Anggota Tim','Role Management'])">
-                        Pilih Paket <i class="fas fa-arrow-right ms-2"></i>
-                    </button>
-                </div>
-            </div>
+      <!-- Paket Standar (Terlaris) -->
+      <div class="col-md-4">
+        <div class="card pricing-card text-center">
+          <div class="card-header bg-success text-white position-relative">
+            <span class="best-seller-label">Terlaris</span>
+            <h3>Standar</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Rp 5.000.000</h4>
+            <ul class="list-unstyled">
+              <li>10 Halaman</li>
+              <li>Free Domain 1 Tahun</li>
+              <li>Desain Menarik</li>
+              <li>SEO Basic</li>
+              <li>Hosting 2 Tahun</li>
+              <li>CMS WordPress</li>
+            </ul>
+            <a href="https://wa.me/6281330763633" class="btn btn-success">Pilih Paket</a>
+          </div>
         </div>
+      </div>
 
-        <!-- Enterprise Package -->
-        <div class="col-lg-4">
-            <div class="pricing-card h-100">
-                <div class="price-accent"></div>
-                <div class="p-4">
-                    <h3 class="fw-bold mb-3">Enterprise</h3>
-                    <div class="price mb-4">Custom<span class="text-muted fs-6">/bulan</span></div>
-                    
-                    <div class="category-title"><i class="fas fa-server me-2"></i>Infrastruktur</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Server Dedicated</li>
-                        <li><i class="fas fa-check"></i>Storage Scalable</li>
-                        <li><i class="fas fa-check"></i>Bandwidth Unlimited</li>
-                        <li><i class="fas fa-check"></i>Load Balancer</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-user-shield me-2"></i>Keamanan Enterprise</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>DDoS Protection</li>
-                        <li><i class="fas fa-check"></i>Backup Real-time</li>
-                        <li><i class="fas fa-check"></i>Audit Security</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-tools me-2"></i>Layanan Premium</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>Dedicated Support 24/7</li>
-                        <li><i class="fas fa-check"></i>Custom Workflow</li>
-                        <li><i class="fas fa-check"></i>API Access</li>
-                        <li><i class="fas fa-check"></i>White-label Solution</li>
-                    </ul>
-
-                    <div class="category-title"><i class="fas fa-certificate me-2"></i>Garansi</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i>SLA 99.99% Uptime</li>
-                        <li><i class="fas fa-check"></i>Priority Maintenance</li>
-                    </ul>
-
-                    <button class="btn btn-outline-primary w-100 mt-4" onclick="sendWA('Enterprise', ['Server Dedicated','Storage Scalable','Bandwidth Unlimited','Load Balancer','DDoS Protection','Backup Real-time','Audit Security','Dedicated Support 24/7','Custom Workflow','API Access','White-label Solution','SLA 99.99% Uptime','Priority Maintenance'])">
-                        Hubungi Sales <i class="fas fa-arrow-right ms-2"></i>
-                    </button>
-                </div>
-            </div>
+      <!-- Paket Premium -->
+      <div class="col-md-4">
+        <div class="card pricing-card text-center">
+          <div class="card-header bg-warning text-white position-relative">
+            <h3>Premium</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Rp 10.000.000</h4>
+            <ul class="list-unstyled">
+              <li>Unlimited Halaman</li>
+              <li>Free Domain 1 Tahun</li>
+              <li>Desain Premium</li>
+              <li>SEO Advanced</li>
+              <li>Hosting 3 Tahun</li>
+              <li><i class="fab fa-wordpress"></i> CMS WordPress</li>
+            </ul>
+            <a href="https://wa.me/6281330763633" class="btn btn-warning">Pilih Paket</a>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
   <!-- Horizontal Line dengan Ikon Bintang Unik -->
   <div class="container my-5 text-center">
