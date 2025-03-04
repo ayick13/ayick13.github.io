@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Arif Tirtana</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="dist/css/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">Tentang Saya</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#timeline">Timeline</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+          <li class="nav-item">
+            <button id="darkModeToggle" class="btn btn-dark">
+              <i class="fas fa-moon"></i> Dark Mode
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center text-white py-5">
+    <div class="container">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="profile-circle mb-4">
+          <img src="assets/saya.jpg" alt="Foto Saya" class="profile-image">
+        </div>
+        <h1 class="display-4 fw-bold">Halo, Saya Arif Tirtana</h1>
+        <p class="lead">Design Grafis | Web Developer | UI/UX Designer | Flutter Developer | Social Media Marketing</p>
+        <a href="#contact" class="btn btn-primary btn-lg mt-3">Hubungi Saya</a>
+      </div>
+    </div>
+  </section>
+
+<!-- Sertifikat Section -->
+<section id="sertifikat" class="sertifikat-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Sertifikat & Penghargaan</h2>
+    <div class="row">
+      <!-- Sertifikat Google -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon google">
+            <i class="fab fa-google"></i>
+          </div>
+          <h4>Google Certified Developer</h4>
+          <p>Sertifikat resmi dari Google untuk pengembangan aplikasi mobile dan web.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat GitHub -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon github">
+            <i class="fab fa-github"></i>
+          </div>
+          <h4>GitHub Certified Contributor</h4>
+          <p>Sertifikat ini menunjukkan keahlian dalam berkontribusi pada proyek open-source dan manajemen repositori di GitHub.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat Microsoft Azure Fundamentals -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon microsoft">
+            <i class="fab fa-microsoft"></i>
+          </div>
+          <h4>Microsoft Certified: Azure Fundamentals</h4>
+          <p>Sertifikat ini menunjukkan pemahaman dasar tentang layanan cloud Microsoft Azure.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat WordPress -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon wordpress">
+            <i class="fab fa-wordpress"></i>
+          </div>
+          <h4>WordPress Certified Developer</h4>
+          <p>Sertifikat resmi dari WordPress untuk pengembangan tema dan plugin WordPress.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat CodeIgniter -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon codeigniter">
+            <i class="fas fa-code"></i>
+          </div>
+          <h4>CodeIgniter Certified Developer</h4>
+          <p>Sertifikat resmi dari CodeIgniter untuk pengembangan aplikasi web berbasis PHP.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat Social Media Marketing dari AWS Amazon -->
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="700">
+        <div class="sertifikat-card">
+          <div class="sertifikat-icon aws">
+            <i class="fab fa-aws"></i>
+          </div>
+          <h4>AWS Certified Social Media Marketing</h4>
+          <p>Sertifikat resmi dari AWS Amazon untuk keahlian dalam strategi dan implementasi pemasaran media sosial.</p>
+          <a href="#" class="btn btn-outline-primary">Lihat Sertifikat</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Jejak Karir</h2>
+    <div class="timeline">
+      <!-- Pendidikan -->
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="timeline-icon education">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>1999 - 2004</h4>
+          <h3 class="text-primary">Pendidikan Tinggi</h3>
+          <p class="text-muted">
+            <i class="fas fa-university me-2"></i>
+          <ul>
+          	<li>KTH Royal Institute of Technology Double Degree: MSc Information and Network Engineering. (<b>Stockholm Sweden</b>)</li>
+          	<li>Sarjana Ilmu Komunikasi Visual (S.I.Kom), Universitas Muhamadiyah Gresik</li>
+          	<li>Sarjana Komputer (S.Kom), Sarjana Design (S.Ds), dan Madya Interior.</li>
+          	</ul>
+          </p>
+          <div class="mt-3">
+            <span class="tech-tag">UI/UX Design</span>
+            <span class="tech-tag">3D Modeling</span>
+            <span class="tech-tag">Java Programming</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bukalapak -->
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="timeline-icon bg-success">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2009 - 2012</h4>
+          <h3 class="text-success">Bukalapak</h3>
+          <p>Berkontribusi dalam pengembangan sistem checkout pertama yang meningkatkan konversi pembelian sebesar 35%.</p>
+          <div class="mt-3">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">jQuery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tokopedia -->
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="timeline-icon bg-warning">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2012 - 2015</h4>
+          <h3 class="text-warning">Tokopedia</h3>
+          <p>Memimpin proyek redesign UI/UX yang berhasil meningkatkan engagement pengguna sebesar 70%.</p>
+          <div class="mt-3">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Go-Jek Internship -->
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="timeline-icon bg-success">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2015 - 2017</h4>
+          <h3 class="text-info">Go-Jek Indonesia</h3>
+          <p>Magang di bagian Keamanan Cloud Compute Engine, bertanggung jawab dalam mengamankan infrastruktur cloud perusahaan.</p>
+          <div class="mt-3">
+            <span class="tech-tag">Cloud Security</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopee Internship -->
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="timeline-icon bg-warning">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2015 - 2018</h4>
+          <h3 class="text-secondary">Shopee Indonesia</h3>
+          <p>Magang di bagian Keamanan Cloud Compute Engine, fokus pada pengamanan dan optimasi infrastruktur cloud.</p>
+          <div class="mt-3">
+            <span class="tech-tag">Cloud Security</span>
+            <span class="tech-tag">GCP</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Architect -->
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="timeline-icon bg-danger">
+          <i class="fas fa-server"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2015 - 2017</h4>
+          <h3 class="text-danger">Cloud Architect</h3>
+          <p>Membangun dan mengelola infrastruktur cloud untuk lebih dari 500 UKM, meningkatkan skalabilitas dan keamanan sistem.</p>
+          <div class="mt-3">
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">Terraform</span>
+          </div>
+        </div>
+      </div>
+            <!-- RuangRiung & Kenhtir AI -->
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="timeline-icon bg-dark">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>2023 - (Sekarang)</h4>
+          <h3 class="text-danger">Strategi Engagement Community</h3>
+          <p>Mengelola dan mengembangkan komunitas RuangRiung AI Image & Kenthir AI di Facebook (2024-sekarang).  Sebagai admin, saya fokus pada moderasi, engagement anggota, dan memastikan komunitas tetap aktif dan positif dalam eksplorasi gambar AI.  Melalui strategi konten dan interaksi aktif, berhasil meningkatkan engagement hingga 60% di setiap grup.</p>
+          <div class="mt-3">
+            <span class="tech-tag">-  Generative AI Art</span>
+            <span class="tech-tag">- Facebook Community Management</span>
+            <span class="tech-tag">-  Community Growth Strategy</span>
+            <span class="tech-tag">Facebook</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+	
+  <!-- Testimoni Section -->
+  <section id="testimoni" class="testimoni-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Testimoni Klien</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimoni-card">
+            <p>"Kerja sama yang sangat menyenangkan! Hasilnya melebihi ekspektasi."</p>
+            <h5>John Doe</h5>
+            <small>CEO Perusahaan XYZ</small>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimoni-card">
+            <p>"Desain yang kreatif dan solutif. Sangat direkomendasikan!"</p>
+            <h5>Jane Smith</h5>
+            <small>Manajer di Perusahaan ABC</small>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimoni-card">
+            <p>"Proyek selesai tepat waktu dengan kualitas terbaik."</p>
+            <h5>Michael Brown</h5>
+            <small>Founder Startup DEF</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Artikel Terbaru</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-card">
+            <img src="dist/assets/blog1.jpg" alt="Blog 1" class="img-fluid">
+            <h4>Tips Membuat Desain Web yang Responsif</h4>
+            <p>Pelajari cara membuat desain web yang responsif dan ramah pengguna.</p>
+            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Hubungi Saya</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <form id="whatsappForm">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nama" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" placeholder="Pesan" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim via WhatsApp</button>
+          </form>
+        </div>
+        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.634075231567!2d112.656415315317!3d-7.275879994749921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbd5d5d5d5d5%3A0x5d5d5d5d5d5d5d5d!2sGresik%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1641234567890!5m2!1sid!2sid"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p>&copy; 2013 - <span id="currentYear"></span> Arif Tirtana. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="btn btn-primary back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- WhatsApp Floating Button -->
+  <a id="whatsappButton" class="btn btn-success whatsapp-button" href="https://wa.me/6281330763633" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="dist/js/script.js"></script>
+</body>
+</html>
