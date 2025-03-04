@@ -1,0 +1,585 @@
+/* Global Styles */
+:root {
+  --primary: #6a11cb;
+  --secondary: #2575fc;
+  --text-color: #333;
+  --background-light: #f8f9fa;
+  --background-dark: #121212;
+  --card-background-dark: #2c2c2c;
+  --text-dark: #ffffff;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-light);
+  transition: var(--transition);
+}
+
+body.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5 {
+  color: var(--text-dark);
+}
+
+body.dark-mode .skill-card,
+body.dark-mode .timeline-content,
+body.dark-mode .testimoni-card,
+body.dark-mode .blog-card,
+body.dark-mode .sertifikat-card {
+  background-color: var(--card-background-dark);
+  color: var(--text-dark);
+}
+
+body.dark-mode .progress {
+  background-color: #333;
+}
+
+body.dark-mode .progress-bar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* Sertifikat Section */
+.sertifikat-section {
+  padding: 100px 0;
+}
+
+.sertifikat-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: center;
+}
+
+.sertifikat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sertifikat-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.sertifikat-card h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.sertifikat-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.sertifikat-card .btn {
+  margin-top: 10px;
+}
+
+/* Warna Ikon Sertifikat */
+.sertifikat-icon.google {
+  color: #4285F4; /* Warna biru Google */
+}
+
+.sertifikat-icon.award {
+  color: #FFC107; /* Warna kuning untuk penghargaan */
+}
+
+.sertifikat-icon.microsoft {
+  color: #00A4EF; /* Warna biru Microsoft */
+}
+
+.sertifikat-icon.wordpress {
+  color: #232323; /* Warna biru WordPress */
+}
+
+.sertifikat-icon.codeigniter {
+  color: #DD4814; /* Warna oranye CodeIgniter */
+}
+
+.sertifikat-icon.github {
+  color: #181717; /* Warna hitam GitHub */
+}
+
+/* Warna Ikon AWS */
+.sertifikat-icon.aws {
+  color: #FF9900; /* Warna oranye AWS */
+}
+
+/* Dark Mode Adjustments untuk Ikon AWS */
+body.dark-mode .sertifikat-icon.aws {
+  color: #FF9900; /* Tetap oranye AWS dalam dark mode */
+}
+
+/* Dark Mode Adjustments untuk Ikon Sertifikat */
+body.dark-mode .sertifikat-icon.google {
+  color: #4285F4; /* Tetap biru Google */
+}
+
+body.dark-mode .sertifikat-icon.award {
+  color: #FFC107; /* Tetap kuning untuk penghargaan */
+}
+
+body.dark-mode .sertifikat-icon.microsoft {
+  color: #00A4EF; /* Tetap biru Microsoft */
+}
+
+body.dark-mode .sertifikat-icon.wordpress {
+  color: #21759B; /* Tetap biru WordPress */
+}
+
+body.dark-mode .sertifikat-icon.codeigniter {
+  color: #DD4814; /* Tetap oranye CodeIgniter */
+}
+
+body.dark-mode .sertifikat-icon.github {
+  color: #ffffff; /* Warna putih GitHub dalam dark mode */
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+.profile-circle {
+  width: 150px;
+  height: 150px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.profile-circle:hover {
+  transform: scale(1.1);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section .btn {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.hero-section .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Skills Section */
+.skills-section {
+  background: var(--background-light);
+  padding: 100px 0;
+}
+
+.skill-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.skill-icon {
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.skill-card h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.skill-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  height: 12px;
+  border-radius: 6px;
+  background: #e9ecef;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 1.5s ease;
+}
+
+.progress-percentage {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Warna Ikon untuk Skill Baru */
+.skill-icon .fa-mobile {
+  color: #3db818; /* Warna hijau untuk Mobile App Development */
+}
+
+.skill-icon .fa-cogs {
+  color: #e36009; /* Warna oranye untuk DevOps */
+}
+
+.skill-icon .fa-chart-line {
+  color: #2575fc; /* Warna biru untuk Data Analysis */
+}
+
+/* Timeline Section */
+.timeline-section {
+  padding: 100px 0;
+  background-color: var(--background-light);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 100%;
+  padding: 20px 40px;
+  text-align: left;
+}
+
+.timeline-icon {
+  position: absolute;
+  top: 20px;
+  left: -30px;
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 0 0 4px #fff, 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  position: relative;
+  margin-left: 40px;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+}
+
+/* Timeline Ikon - Warna Latar Belakang dan Ikon */
+.timeline-icon {
+  background-color: var(--primary); /* Warna default */
+  color: #ffffff; /* Warna ikon default */
+}
+
+.timeline-icon i {
+  color: inherit; /* Ikon mewarisi warna dari parent */
+}
+
+/* Pendidikan */
+.timeline-icon.education {
+  background-color: #6a11cb; /* Warna latar belakang lingkaran */
+}
+
+.timeline-icon.education i {
+  color: #ffffff; /* Warna ikon (putih) */
+}
+
+/* Go-Jek */
+.timeline-icon.bg-info {
+  background-color: #3db818; /* Warna hijau kustom untuk Go-Jek */
+}
+
+.timeline-icon.bg-info i {
+  color: #fff; /* Warna ikon (putih) */
+}
+
+/* Shopee */
+.timeline-icon.bg-secondary {
+  background-color: #e36009; /* Warna oranye kustom untuk Shopee */
+}
+
+.timeline-icon.bg-secondary i {
+  color: #e36009; /* Warna ikon (putih) */
+}
+
+/* Tokopedia */
+.timeline-icon.bg-warning {
+  background-color: #ffc107; /* Warna latar belakang lingkaran */
+}
+
+.timeline-icon.bg-warning i {
+  color: #000000; /* Warna ikon (hitam) */
+}
+
+/* Bukalapak */
+.timeline-icon.bg-success {
+  background-color: #28a745; /* Warna latar belakang lingkaran */
+}
+
+.timeline-icon.bg-success i {
+  color: #ffffff; /* Warna ikon (putih) */
+}
+
+/* Cloud Architect */
+.timeline-icon.bg-danger {
+  background-color: #dc3545; /* Warna latar belakang lingkaran */
+}
+
+.timeline-icon.bg-danger i {
+  color: #ffffff; /* Warna ikon (putih) */
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    padding-left: 70px;
+    padding-right: 20px;
+  }
+
+  .timeline-icon {
+    left: 0;
+  }
+
+  .timeline-content {
+    margin-left: 20px;
+  }
+
+  .timeline-content::before {
+    left: 10px;
+  }
+}
+
+/* Testimoni Section */
+.testimoni-section {
+  padding: 100px 0;
+}
+
+.testimoni-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.testimoni-card:hover {
+  transform: translateY(-10px);
+}
+
+.testimoni-card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.testimoni-card h5 {
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+/* Blog Section */
+.blog-section {
+  padding: 100px 0;
+  background-color: #f8f9fa;
+}
+
+.blog-section h2 {
+  color: #333;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-card h4 {
+  font-size: 1.25rem;
+  margin: 15px;
+  color: #333;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  margin: 0 15px 15px;
+  color: #666;
+}
+
+/* Blog Section - Dark Mode */
+body.dark-mode .blog-section {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .blog-section h2 {
+  color: #ffffff;
+}
+
+body.dark-mode .blog-card {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+body.dark-mode .blog-card h4 {
+  color: #ffffff;
+}
+
+body.dark-mode .blog-card p {
+  color: #e0e0e0;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 100px 0;
+  background-color: var(--background-light);
+}
+
+.contact-section .form-control {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.contact-section .btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 1000;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 50px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.back-to-top:hover {
+  background-color: var(--secondary);
+  transform: translateY(-5px);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: #25d366;
+  color: #fff;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
