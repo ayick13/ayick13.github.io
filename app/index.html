@@ -354,6 +354,19 @@
     border-radius: 12px;
 }
 
+#imageSize {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23616161"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #imageSize {
+        margin-top: 10px;
+    }
+}
     </style>
 </head>
 <body>
@@ -413,7 +426,7 @@
 
         <!-- Settings -->
         <div class="row g-3 mb-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <select class="form-select" id="imageStyle">
                     <option>Select Style</option>
         <!-- Existing Styles -->
@@ -532,7 +545,7 @@
 		<option>Sumi-e</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select class="form-select" id="imageQuality">
                     <option>Standard</option>
                     <option>HD</option>
@@ -540,22 +553,31 @@
                     <option>Genius</option>
                 </select>
             </div>
-            <div class="col-md-3">
-                <div class="input-group">
-                    <span class="input-group-text">Jumlah</span>
-                    <input type="number" class="form-control" 
-                           id="imageCount" min="1"
-						   value="1"
-                           oninput="validateNumberInput(this)">
-                    <span class="input-group-text">Gambar</span>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-primary w-100" id="generateBtn" onclick="generateImage()">
-                    Generate <i class="fas fa-magic ms-1"></i>
-                </button>
-            </div>
+             <!-- Size Dropdown Baru -->
+    <div class="col-md-3">
+        <select class="form-select" id="imageSize">
+            <option value="1024x1024">1024x1024 (Square)</option>
+            <option value="1024x1792">1024x1792 (Portrait)</option>
+            <option value="1792x1024">1792x1024 (Landscape)</option>
+        </select>
+    </div>
+
+    <!-- Jumlah Gambar -->
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-text">Jumlah</span>
+            <input type="number" class="form-control" id="imageCount" 
+                   min="1" value="1" oninput="validateNumberInput(this)">
         </div>
+    </div>
+
+    <!-- Tombol Generate -->
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100" id="generateBtn" onclick="generateImage()">
+            Generate <i class="fas fa-magic ms-1"></i>
+        </button>
+    </div>
+</div>
 		
         <!-- Generated Images -->
 		<div class="container my-5">
@@ -828,7 +850,12 @@ function validateNumberInput(input) {
     if (value < 1) input.value = 1;
 }
 
+function getImageSize() {
+    return document.getElementById('imageSize').value;
+}
+
 async function generateImage() {
+	const selectedSize = document.getElementById('imageSize').value;
     const generateBtn = document.querySelector('#generateBtn');
     const progressCard = document.getElementById('progressCard');
     const coinsElement = document.getElementById('coinCount');
