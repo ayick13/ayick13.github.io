@@ -367,6 +367,51 @@
         margin-top: 10px;
     }
 }
+
+/* Pricing Card */
+.pricing-card {
+transition: all 0.3s;
+border: 2px solid transparent;
+border-radius: 15px;
+overflow: hidden;
+}
+
+.pricing-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.pricing-card.basic {
+border-color: #0d6efd;
+}
+
+.pricing-card.pro {
+border-color: #ffc107;
+}
+
+.pricing-card.enterprise {
+border-color: #198754;
+}
+
+.pricing-card .list-unstyled li {
+padding: 8px 0;
+border-bottom: 1px solid #eee;
+}
+
+.pricing-card .list-unstyled i {
+width: 25px;
+}
+
+.card-header {
+border-radius: 12px 12px 0 0 !important;
+padding: 1.5rem !important;
+}
+
+.btn-package {
+font-weight: 500;
+letter-spacing: 0.5px;
+}
+
     </style>
 </head>
 <body>
@@ -590,6 +635,98 @@
     
     <div class="row g-3" id="imageResults"></div>
 </div>		
+
+<hr>
+
+<!-- Pricing Section -->
+<section class="pricing py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Pilih Paket Upgrade</h2>
+        <div class="row">
+            <!-- Basic Package -->
+            <div class="col-lg-4 mb-4">
+                <div class="card pricing-card basic">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="my-0 fw-normal">Basic</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Rp 49.000<span class="text-muted">/bulan</span></h4>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>1000 Coins/bulan</li>
+                            <li><i class="fas fa-image me-2"></i>Generasi HD (1024x1024)</li>
+                            <li><i class="fas fa-clock me-2"></i>Prioritas Antrian</li>
+                            <li><i class="fas fa-cloud-download me-2"></i>100 Download/hari</li>
+                            <li><i class="fas fa-palette me-2"></i>50+ Gaya Seni</li>
+                            <li><i class="fas fa-users me-2"></i>Akun Tim (3 user)</li>
+                            <li><i class="fas fa-history me-2"></i>Riwayat 7 hari</li>
+                            <li><i class="fas fa-file-export me-2"></i>Ekspor PNG & JPG</li>
+                            <li><i class="fas fa-star me-2"></i>Basic Support</li>
+                            <li><i class="fas fa-gift me-2"></i>Bonus 200 Coins awal</li>
+                        </ul>
+                        <button class="btn btn-primary w-100" onclick="selectPackage('Basic')">
+                            Pilih Paket
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pro Package -->
+            <div class="col-lg-4 mb-4">
+                <div class="card pricing-card pro">
+                    <div class="card-header bg-warning text-dark">
+                        <h3 class="my-0 fw-normal">Pro</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Rp 149.000<span class="text-muted">/bulan</span></h4>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>5000 Coins/bulan</li>
+                            <li><i class="fas fa-expand me-2"></i>Generasi HD & Genius Resolusi</li>
+                            <li><i class="fas fa-bolt me-2"></i>Prioritas Eksekusi</li>
+                            <li><i class="fas fa-cloud-download me-2"></i>Unlimited Download</li>
+                            <li><i class="fas fa-palette me-2"></i>70+ Gaya Seni</li>
+                            <li><i class="fas fa-users me-2"></i>Akun Tim (10 user)</li>
+                            <li><i class="fas fa-history me-2"></i>Riwayat 30 hari</li>
+                            <li><i class="fas fa-file-export me-2"></i>Ekspor PNG, JPG, SVG</li>
+                            <li><i class="fas fa-headset me-2"></i>Priority Support</li>
+                            <li><i class="fas fa-gift me-2"></i>Bonus 1000 Coins awal</li>
+                        </ul>
+                        <button class="btn btn-warning w-100" onclick="selectPackage('Pro')">
+                            Pilih Paket
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise Package -->
+            <div class="col-lg-4 mb-4">
+                <div class="card pricing-card enterprise">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="my-0 fw-normal">Enterprise</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Custom Price</h4>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>Unlimited Coins</li>
+                            <li><i class="fas fa-expand me-2"></i>Semua Resolusi</li>
+            <li><i class="fas fa-rocket me-2"></i>Generasi Prioritas</li>
+            <li><i class="fas fa-cloud-download me-2"></i>Unlimited Download</li>
+            <li><i class="fas fa-palette me-2"></i>Semua Gaya Seni</li>
+            <li><i class="fas fa-users me-2"></i>Akun Tim Unlimited</li>
+            <li><i class="fas fa-infinity me-2"></i>Riwayat Permanent</li>
+            <li><i class="fas fa-file-export me-2"></i>Semua Format Ekspor</li>
+            <li><i class="fas fa-headset me-2"></i>Dedicated Support</li>
+            <li><i class="fas fa-cube me-2"></i>Custom Model AI</li>
+        </ul>
+        <button class="btn btn-success w-100" onclick="selectPackage('Enterprise')">
+            Hubungi Kami
+        </button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 		<!-- Example Images -->
         <h4 class="mb-3">Eksplore Ideas <i class="fa fa-bulb 2x"></i></h4>
         <div class="row g-3 mb-5">
@@ -1007,6 +1144,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 });
 
+
+function selectPackage(packageName) {
+const message = `Halo, saya tertarik untuk berlangganan paket *${packageName}*. Mohon info lebih lanjut mengenai:
+- Cara pembayaran
+- Detail fitur
+- Onboarding process`;
+
+const whatsappUrl = `https://wa.me/6281330763633?text=${encodeURIComponent(message)}`;
+window.location.href = whatsappUrl;
+}
 
     </script>
 </body>
