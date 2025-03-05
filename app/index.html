@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Hasilkan gambar AI dengan berbagai gaya dan model. Buat visual yang menakjubkan menggunakan DALL-E, Stable Diffusion, Midjourney, FLUX 1.1, Meta dan lainnya. Mulai berkreasi sekarang!">
+	<meta name="keywords" content="Pembuat Gambar AI, DALL-E, Stable Diffusion, Seni AI, Pembuatan Gambar">
+	<meta property="og:title" content="Pembuat Gambar AI - Buat Seni AI yang Menakjubkan">
+	<meta property="og:description" content="Hasilkan gambar AI dengan berbagai gaya dan model. Buat visual yang menakjubkan menggunakan DALL-E, Stable Diffusion, Midjourney, FLUX 1.1, Meta dan lainnya. Mulai berkreasi sekarang!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png">
+    <!-- link rel="manifest" href="/site.webmanifest" -->
+    <title>KenthrAI Image Generator</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .model-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 60px;
+        }
+        
+        .model-card.selected {
+            border: 2px solid #0d6efd;
+            background-color: #000000;
+			color: #fff;
+        }
+        
+        .coin-counter {
+            background: linear-gradient(45deg, #ffd700, #daa520);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .generated-image {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .preview-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-card:hover .preview-overlay {
+            bottom: 0;
+        }
+        
+        #progressBar {
+            transition: width 0.3s ease;
+        }
+		
+		.image-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .generated-image:hover + .image-title,
+    .image-title:hover {
+        opacity: 1;
+    }
+    
+    .title-input {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: 2;
+        background: rgba(255,255,255,0.9);
+        padding: 5px;
+        border-radius: 4px;
+        display: none;
+    }
+	
+		/* Model Card Colors */
+	.model-card {
+		border: none;
+		border-radius: 12px;
+		color: white;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.model-card::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: linear-gradient(45deg, 
+			rgba(255,255,255,0.1) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(255,255,255,0.1) 50%,
+			rgba(255,255,255,0.1) 75%,
+			transparent 75%);
+		transform: rotate(45deg);
+		opacity: 0.3;
+		transition: all 0.5s;
+	}
+
+	/* Warna spesifik untuk setiap model */
+	.model-card[data-model="DALL-3"] {
+		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+		box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+	}
+
+	.model-card[data-model="Stable Diffusion"] {
+		background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+		box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+	}
+
+	.model-card[data-model="Midjourney"] {
+		background: linear-gradient(135deg, #f59e0b 0%, #d946ef 100%);
+		box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+	}
+
+	.model-card[data-model="Leonardo"] {
+		background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+		box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+	}
+
+	.model-card[data-model="BING"] {
+		background: linear-gradient(135deg, #22c55e 0%, #a3e635 100%);
+		box-shadow: 0 4px 6px rgba(34, 197, 94, 0.2);
+	}
+
+	.model-card[data-model="Imagen 3"] {
+		background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+		box-shadow: 0 4px 6px rgba(236, 72, 153, 0.2);
+	}
+
+	.model-card[data-model="PlayGround AI"] {
+		background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+		box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+	}
+
+	.model-card[data-model="FLUX 1.1[pro]"] {
+		background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+		box-shadow: 0 4px 6px rgba(139, 92, 246, 0.2);
+	}
+	
+	.model-card[data-model="Recraft V3"] {
+    background: linear-gradient(135deg, #464a47 0%, #141729 100%);
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
+	
+.model-card[data-model="FLUX 1[dev]"] {
+    background: linear-gradient(135deg, #3b6f8f 0%, #141729 100%);
+    box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+}
+
+.model-card[data-model="Ideogram"] {
+    background: linear-gradient(135deg, #464a47 0%, #141729 100%);
+    box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+}
+
+.model-card[data-model="MetaAI"] {
+		background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+		box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+	}
+
+	/* Hover Effect */
+	.model-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+	}
+
+	.model-card:hover::before {
+		animation: shine 1.5s infinite;
+	}
+
+	/* Selected State */
+	.model-card.selected {
+		border: 2px solid white;
+		box-shadow: 0 0 15px rgba(255,255,255,0.5);
+		transform: scale(1.05);
+	}
+
+	@keyframes shine {
+		0% { transform: translateX(-100%) rotate(45deg); }
+		100% { transform: translateX(100%) rotate(45deg); }
+	}
+	
+	
+/* Styling untuk H1 hasil */
+    .result-heading {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 2.2rem;
+        color: #2d3748;
+        position: relative;
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .result-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        border-radius: 2px;
+    }
+    
+    .result-heading .badge {
+        font-size: 1.2rem;
+        padding: 0.35em 0.65em;
+        vertical-align: middle;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .result-heading {
+            font-size: 1.8rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .result-heading .badge {
+            font-size: 1rem;
+        }
+    }
+	
+.welcome-modal {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    border: none;
+}
+
+.welcome-modal .modal-header {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.feature-list i {
+    color: #6366f1;
+    width: 25px;
+}
+
+
+/* Styling tambahan modal PopUp */
+
+.btn-app-store, .btn-play-store {
+    flex: 1;
+    text-align: left;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-app-store:hover, .btn-play-store:hover {
+    transform: translateY(-2px);
+}
+
+.btn-app-store i, .btn-play-store i {
+    font-size: 1.5rem;
+}
+
+.btn-google {
+    background: linear-gradient(135deg, #ea4335 0%, #d3382a 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.btn-facebook {
+    background: linear-gradient(135deg, #1877f2 0%, #146cda 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.btn-google:hover, .btn-facebook:hover {
+    color: white;
+    opacity: 0.9;
+}
+
+.social-login .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-badges {
+    background: rgba(0,0,0,0.05);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-robot 3x"></i> KenthrAI Image Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+					<li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-image me-1"></i> MENU
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Text to Image</a></li>
+                            <li><a class="dropdown-item" href="#">Image to Image</a></li>
+							<li><a class="dropdown-item" href="#">Text to Video</a></li>
+							<li><a class="dropdown-item" href="#">Image to Video</a></li>
+							<li><a class="dropdown-item" href="#">Enhanced Image</a></li>
+							<li><a class="dropdown-item" href="#">Enhanced Video</a></li>
+							<li><a class="dropdown-item" href="#">UpScale</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-history me-1"></i> History</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <span class="coin-counter me-3">
+                        <i class="fas fa-coins me-1"></i>
+                        <span id="coinCount">99</span> Coins
+                    </span>
+                    <button class="btn btn-outline-light">Upgrade</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Model Selection -->
+        <div class="row g-3 mb-4" id="modelSelection"></div>
+
+        <!-- Prompt Input -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <textarea class="form-control" rows="4" 
+                          placeholder="Tulis Imajinasi Anda..."></textarea>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <select class="form-select" id="imageStyle">
+                    <option>Select Style</option>
+        <!-- Existing Styles -->
+        <option>Realistic</option>
+        <option>Anime</option>
+        <option>Digital Art</option>
+        <option>3D Render</option>
+        <option>Painting</option>
+        <option>Cyberpunk</option>
+        <option>Surrealism</option>
+        <option>Watercolor</option>
+        <option>Minimalist</option>
+        <option>Retro</option>
+        <option>Fantasy Art</option>
+        <option>Oil Painting</option>
+        <option>Graffiti</option>
+        <option>Pixel Art</option>
+        <option>Steampunk</option>
+        <option>Abstract</option>
+        <option>Cartoon</option>
+        <option>Vintage</option>
+        <option>Gothic</option>
+        <option>Low Poly</option>
+        <option>Pop Art</option>
+        <option>Comic Book</option>
+        <option>Chalk Art</option>
+        <option>Neon</option>
+        <option>Origami</option>
+
+        <!-- New Additional Styles -->
+        <option>Glitch Art</option>
+        <option>Synthwave</option>
+        <option>Art Nouveau</option>
+        <option>Cubism</option>
+        <option>Impressionism</option>
+        <option>Psychedelic</option>
+        <option>Dystopian</option>
+        <option>Baroque</option>
+        <option>Pointillism</option>
+        <option>Concept Art</option>
+        <option>Line Art</option>
+        <option>Collage</option>
+        <option>Silhouette</option>
+        <option>Manga</option>
+        <option>Art Deco</option>
+        <option>Biomechanical</option>
+        <option>HDR</option>
+        <option>Monochrome</option>
+        <option>Isometric</option>
+        <option>Tattoo</option>
+        <option>Cyber Realism</option>
+        <option>Paper Cut</option>
+        <option>Stained Glass</option>
+        <option>Liquid</option>
+        <option>Grunge</option>
+        <option>Sci-Fi</option>
+        <option>Horror</option>
+        <option>Kids Drawing</option>
+        <option>Mosaic</option>
+        <option>Ink Wash</option>
+        <option>Futurism</option>
+        <option>Doodle</option>
+        <option>Claymation</option>
+        <option>Holographic</option>
+        <option>Vaporwave</option>
+        <option>Brutalism</option>
+        <option>Naturecore</option>
+        <option>Kawaii</option>
+        <option>De Stijl</option>
+        <option>Op Art</option>
+        <option>Ukiyo-e</option>
+        <option>Batik</option>
+        <option>Silk Screen</option>
+        <option>Lomography</option>
+        <option>Daguerreotype</option>
+        <option>Linocut</option>
+		<option>Constructivism</option>
+		<option>Outsider Art</option>
+		<option>Neo-Expressionism</option>
+		<option>Superflat</option>
+		<option>Light Painting</option>
+		<option>Zentangle</option>
+		<option>Trompe-l'oeil</option>
+		<option>Kinetic Art</option>
+		<option>Biomorphic</option>
+		<option>Hyperrealism</option>
+		<option>Cyber Goth</option>
+		<option>Liquid Crystal</option>
+		<option>Data Moshing</option>
+		<option>NFT Art Style</option>
+		<option>Solarpunk</option>
+		<option>Mandala</option>
+		<option>Dot Painting</option>
+		<option>Henna</option>
+		<option>Tribal</option>
+		<option>Calligraphy</option>
+		<option>Acrylic Pour</option>
+		<option>Scratchboard</option>
+		<option>Encaustic</option>
+		<option>Parchment</option>
+		<option>Holographic Grid</option>
+		<option>Cyberprep</option>
+		<option>Googie</option>
+		<option>Raygun Gothic</option>
+		<option>Bauhaus</option>
+		<option>Afrofuturism</option>
+		<option>Post-Internet Art</option>
+		<option>Neon Noir</option>
+		<option>Dieselpunk</option>
+		<option>Atompunk</option>
+		<option>Seapunk</option>
+		<option>Lolita Fashion</option>
+		<option>Chiaroscuro</option>
+		<option>Fumage</option>
+		<option>Gouache</option>
+		<option>Sumi-e</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="imageQuality">
+                    <option>Standard</option>
+                    <option>HD</option>
+					<option>Ultra</option>
+                    <option>Genius</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-text">Jumlah</span>
+                    <input type="number" class="form-control" 
+                           id="imageCount" min="1"
+						   value="1"
+                           oninput="validateNumberInput(this)">
+                    <span class="input-group-text">Gambar</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" id="generateBtn" onclick="generateImage()">
+                    Generate <i class="fas fa-magic ms-1"></i>
+                </button>
+            </div>
+        </div>
+		
+        <!-- Generated Images -->
+		<div class="container my-5">
+    <!-- i class="fas fa-image"></i -->
+    <h1 class="result-heading mb-4">
+        <i class="fas fa-magic me-2"></i>
+        Hasil Generate Gambar
+        <span class="badge bg-primary ms-2" id="resultCount">0</span>
+    </h1>
+    
+    <div class="row g-3" id="imageResults"></div>
+</div>		
+		<!-- Example Images -->
+        <h4 class="mb-3">Eksplore Ideas <i class="fa fa-bulb 2x"></i></h4>
+        <div class="row g-3 mb-5">
+            <div class="col-md-3">
+                <div class="card preview-card">
+                    <img src="https://picsum.photos/200/300?random=1" class="card-img-top">
+                    <div class="preview-overlay">
+                        <small>"Gambar Contoh"</small>
+                        <div class="text-muted mt-1"><small>DALL-3 • HD</small></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tambahkan lebih banyak contoh sesuai kebutuhan -->
+			 <div class="col-md-3">
+                <div class="card preview-card">
+                    <img src="https://picsum.photos/200/300?random=2" class="card-img-top">
+                    <div class="preview-overlay">
+                        <small>"Gambar contoh"</small>
+                        <div class="text-muted mt-1"><small>DALL-3 • HD</small></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tambahkan lebih banyak contoh sesuai kebutuhan -->
+			<div class="col-md-3">
+                <div class="card preview-card">
+                    <img src="https://picsum.photos/200/300.webp" class="card-img-top">
+                    <div class="preview-overlay">
+                        <small>"Gambar Contoh"</small>
+                        <div class="text-muted mt-1"><small>DALL-3 • HD</small></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tambahkan lebih banyak contoh sesuai kebutuhan -->
+			<div class="col-md-3">
+                <div class="card preview-card">
+                    <img src="https://picsum.photos/200/300.webp?random=1" class="card-img-top">
+                    <div class="preview-overlay">
+                        <small>"Gambar Contoh"</small>
+                        <div class="text-muted mt-1"><small>DALL-3 • HD</small></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tambahkan lebih banyak contoh sesuai kebutuhan -->
+        </div>
+
+        <!-- FAQ -->
+        <div class="card mt-5">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Paling Sering di Tanyakan</h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="faqAccordion"></div>
+            </div>
+        </div>
+    </div>
+		
+		<!-- Modal PopUp -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content welcome-modal">
+            <div class="modal-header border-0">
+                <h2 class="modal-title" id="welcomeModalLabel">
+                    <i class="fas fa-magic me-2"></i>Selamat Datang!
+                </h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1995/1995463.png" 
+                             class="img-fluid mb-3" 
+                             alt="AI Illustration">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="mb-4">Fitur Unggulan:</h3>
+                        <ul class="feature-list mb-4">
+							<li><i class="fas fa-robot me-2"></i>10+ Tools AI</li>
+                            <li><i class="fas fa-palette me-2"></i>70+ Gaya Seni AI</li>
+                            <li><i class="fas fa-bolt me-2"></i>Generasi Cepat</li>
+                            <li><i class="fas fa-coins me-2"></i>Sistem Koin</li>
+                        </ul>
+                        
+                        <div class="app-badges mb-4">
+                            <p class="text-muted mb-2">Download Aplikasi:</p>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-dark btn-app-store">
+                                    <i class="fab fa-apple me-2"></i>
+                                    <div>
+                                        <small>Download on the</small>
+                                        <div>App Store</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="btn btn-dark btn-play-store">
+                                    <i class="fab fa-google-play me-2"></i>
+                                    <div>
+                                        <small>Get it on</small>
+                                        <div>Google Play</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 flex-column">
+                <div class="social-login w-100 mb-3">
+                    <p class="text-center text-muted mb-3">Atau lanjutkan dengan:</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-google">
+                            <i class="fab fa-google me-2"></i>
+                            Lanjutkan dengan Google
+                        </button>
+                        <button class="btn btn-facebook">
+                            <i class="fab fa-facebook-f me-2"></i>
+                            Lanjutkan dengan Facebook
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal">
+                    Lanjut sebagai Tamu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>		
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; <span id="currentYear"></span> AI Image Generator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Progress Bar -->
+    <div class="container fixed-bottom" style="max-width: 800px; bottom: 80px;">
+        <div class="card d-none" id="progressCard">
+            <div class="card-body py-2">
+                <div class="d-flex align-items-center">
+                    <div class="progress flex-grow-1 me-3">
+                        <div id="progressBar" class="progress-bar bg-primary" 
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="btn btn-primary rounded-circle">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let coins = 99;
+        let currentModel = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initModels();
+            initFAQ();
+            initEventListeners();
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        function initModels() {
+            const models = [
+                'DALL-3', 'Leonardo', 'BING', 'Stable Diffusion', 
+                'Midjourney', 'Imagen 3', 'Recraft V3', 
+                'PlayGround AI', 'FLUX 1.1[pro]', 'FLUX 1[dev]', 'Ideogram', 'MetaAI'
+            ];
+            
+            const modelContainer = document.getElementById('modelSelection');
+            models.forEach(model => {
+                modelContainer.innerHTML += `
+                    <div class="col-6 col-md-2">
+                        <div class="model-card card text-center p-2" data-model="${model}">
+                            <h6 class="mb-0">${model}</h6>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function initFAQ() {
+            const faqs = [
+                { 
+                    question: "Bagaimana cara menggunakan generator ini?", 
+                    answer: "Ketik deskripsi gambar yang Anda inginkan di kolom teks, pilih model dan pengaturan, lalu klik Generate." 
+                },
+                { 
+                    question: "Berapa lama proses generasi gambar?", 
+                    answer: "Biasanya memakan waktu 15-30 detik tergantung model dan server." 
+                },
+                { 
+                    question: "Apa itu coins dan cara mendapatkannya?", 
+                    answer: "Coins adalah mata uang virtual untuk generasi gambar. Anda bisa mendapatkannya dengan upgrade akun." 
+                },
+                { 
+                    question: "Apakah gambar yang dihasilkan bisa komersial?", 
+                    answer: "Ya, semua gambar yang dihasilkan bebas royalti dan bisa digunakan untuk keperluan komersial." 
+                },
+                { 
+                    question: "Bagaimana jika hasil gambar tidak sesuai?", 
+                    answer: "Anda bisa mencoba memperbaiki deskripsi atau menggunakan model yang berbeda untuk hasil lebih baik." 
+                }
+            ];
+            
+            const faqContainer = document.getElementById('faqAccordion');
+            faqs.forEach((faq, index) => {
+                faqContainer.innerHTML += `
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#faq${index}">
+                                ${faq.question}
+                            </button>
+                        </h2>
+                        <div id="faq${index}" 
+                             class="accordion-collapse collapse" 
+                             data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">${faq.answer}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function initEventListeners() {
+            // Model selection
+            document.querySelectorAll('.model-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentModel = this.querySelector('h6').textContent;
+                });
+            });
+
+            // Back to top
+            window.addEventListener('scroll', function() {
+                const backToTop = document.getElementById('backToTop');
+                backToTop.style.display = this.scrollY > 200 ? 'block' : 'none';
+            });
+
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+function validateNumberInput(input) {
+    const value = parseInt(input.value);
+    if (value < 1) input.value = 1;
+}
+
+async function generateImage() {
+    const generateBtn = document.querySelector('#generateBtn');
+    const progressCard = document.getElementById('progressCard');
+    const coinsElement = document.getElementById('coinCount');
+    const imageCount = parseInt(document.getElementById('imageCount').value) || 1;
+    const promptText = document.querySelector('textarea').value;
+    
+    try {
+        // Validasi
+        if (!currentModel) {
+            alert('Pilih model terlebih dahulu!');
+            return;
+        }
+        
+        if (imageCount < 1) {
+            alert('Jumlah gambar minimal 1');
+            return;
+        }
+        
+        if (coins < imageCount) {
+            alert(`Coin tidak cukup! Dibutuhkan ${imageCount} coin Lagi untuk bisa menghasilkan gambar`);
+            return;
+        }
+
+        // Disable tombol generate
+        generateBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Memproses...';
+        generateBtn.disabled = true;
+        progressCard.classList.remove('d-none');
+
+        // Simulasi proses generate
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += 10;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            if(progress >= 100) clearInterval(progressInterval);
+        }, 500);
+
+        // Simulasi API call
+        await new Promise(resolve => setTimeout(resolve, 5000));
+
+        // Kurangi coins
+        coins -= imageCount;
+        coinsElement.textContent = coins;
+
+        // Generate images
+        const imageResults = document.getElementById('imageResults');
+		function displayGeneratedImages(images) {
+    const imageResults = document.getElementById('imageResults');
+    const resultCount = document.getElementById('resultCount');
+    
+    // Update counter
+    const currentCount = parseInt(resultCount.textContent) || 0;
+    resultCount.textContent = currentCount + images.length;
+
+    let imagesHTML = '';
+    
+    images.forEach((image, index) => {
+        const truncatedTitle = promptText.substring(0, 40) + (promptText.length > 40 ? '...' : '');
+        
+        imagesHTML += `
+            <div class="col-md-3 mb-3">
+                <div class="card position-relative">
+                    <div class="title-input">
+                        <input type="text" 
+                               class="form-control form-control-sm" 
+                               value="${truncatedTitle}"
+                               onblur="updateTitle(this)">
+                    </div>
+                    <img src="${image.url}" 
+                         class="card-img-top generated-image"
+                         loading="lazy"
+                         onclick="toggleTitleInput(this)">
+                    <div class="image-title">${truncatedTitle}</div>
+                    <div class="card-footer p-2">
+                        <small class="text-muted">
+                            ${currentModel} • 
+                            ${document.getElementById('imageQuality').value} • 
+                            ${document.getElementById('imageStyle').value}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    imageResults.innerHTML = imagesHTML + imageResults.innerHTML;
+}
+        let imagesHTML = '';
+        
+        for(let i = 0; i < imageCount; i++) {
+            const truncatedTitle = promptText.substring(0, 40) + (promptText.length > 40 ? '...' : '');
+            
+            imagesHTML += `
+                <div class="col-md-3 mb-3">
+                    <div class="card position-relative">
+                        <div class="title-input">
+                            <input type="text" 
+                                   class="form-control form-control-sm" 
+                                   value="${truncatedTitle}"
+                                   onblur="updateTitle(this)">
+                        </div>
+                        <img src="https://picsum.photos/500/300?random=1${Math.random()}" 
+                             class="card-img-top generated-image"
+                             loading="lazy"
+                             onclick="toggleTitleInput(this)">
+                        <div class="image-title">${truncatedTitle}</div>
+                        <div class="card-footer p-2">
+                            <small class="text-muted">
+                                ${currentModel} • 
+                                ${document.getElementById('imageQuality').value} • 
+                                ${document.getElementById('imageStyle').value}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        imageResults.innerHTML = imagesHTML + imageResults.innerHTML;
+
+    } catch (error) {
+        alert('Gagal generate gambar: ' + error.message);
+    } finally {
+        // Reset UI state
+        generateBtn.innerHTML = 'Generate <i class="fas fa-magic ms-1"></i>';
+        generateBtn.disabled = false;
+        progressCard.classList.add('d-none');
+        document.getElementById('progressBar').style.width = '0%';
+    }
+}
+
+// Fungsi untuk judul gambar
+function toggleTitleInput(imgElement) {
+    const card = imgElement.closest('.card');
+    const titleInput = card.querySelector('.title-input');
+    titleInput.style.display = titleInput.style.display === 'none' ? 'block' : 'none';
+}
+
+function updateTitle(input) {
+    const title = input.value;
+    const titleElement = input.closest('.card').querySelector('.image-title');
+    titleElement.textContent = title;
+    input.style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Tampilkan modal 1 detik setelah halaman dimuat
+    setTimeout(() => {
+        const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+        welcomeModal.show();
+    }, 1000);
+});
+
+
+    </script>
+</body>
+</html>
