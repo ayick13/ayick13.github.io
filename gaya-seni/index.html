@@ -70,23 +70,56 @@
                 <h2 class="text-center mb-4 animate__animated animate__fadeIn">Pilih Gaya Seni</h2>
                 <select class="form-select" id="artStyleDropdown">
                     <option value="" selected disabled>-- Pilih Gaya Seni --</option>
-                    <option value="Impresionisme">Impresionisme</option>
-                    <option value="Kubisme">Kubisme</option>
-                    <option value="Surealisme">Surealisme</option>
-                    <option value="Seni_abstrak">Seni Abstrak</option>
-                    <option value="Barok">Barok</option>
-                    <!-- Gaya Seni Tambahan -->
-                    <option value="Romantisisme">Romantisisme</option>
-                    <option value="Realisme">Realisme</option>
-                    <option value="Ekspresionisme">Ekspresionisme</option>
-                    <option value="Futurisme">Futurisme</option>
-                    <option value="Pop_art">Pop Art</option>
-                    <option value="Seni_jalanan">Street Art</option>
-                    <option value="Renaisans">Renaissance</option>
-                     <option value="Seni_kontemporer">Kontemporer</option>
-                    <option value="Fraktal">Fraktal</option>
-                    <option value="Kartun">Kartun</option>
-                    <option value="Realisme_sosialis">Realisme Sosialis</option>
+                       <option value="Impresionisme">Impressionisme</option>
+    <option value="Kubisme">Kubisme</option>
+    <option value="Surealisme">Surealisme</option>
+    <option value="Seni_abstrak">Seni Abstrak</option>
+    <option value="Barok">Barok</option>
+    <option value="Romantisisme">Romantisisme</option>
+    <option value="Realisme">Realisme</option>
+    <option value="Ekspresionisme">Ekspresionisme</option>
+    <option value="Futurisme">Futurisme</option>
+    <option value="Pop_art">Pop Art</option>
+    <option value="Art_Nouveau">Art Nouveau</option>
+    <option value="Art_Deco">Art Deco</option>
+    <option value="Renaissance">Renaissance</option>
+    <option value="Gotik">Gotik</option>
+    <option value="Neoklasikisme">Neoklasik</option>
+    <option value="Romantisisme">Romantisme</option>
+    <option value="Dadaisme">Dadaisme</option>
+    <option value="Konstruktivisme">Konstruktivisme</option>
+    <option value="De_Stijl">De Stijl</option>
+    <option value="Fauvisme">Fauvisme</option>
+    <option value="Minimalisme">Minimalisme</option>
+    <option value="Pascaimpresionisme">Post-Impressionisme</option>
+    <option value="Simbolisme">Simbolisme</option>
+    <option value="Ekspresionisme_abstrak">Ekspresionisme Abstrak</option>
+    <option value="Op_art">Op Art</option>
+    <option value="Seni_konseptual">Seni Konseptual</option>
+    <option value="Seni_instalasi">Seni Instalasi</option>
+    <option value="Seni_pertunjukan">Seni Pertunjukan</option>
+    <option value="Seni_digital">Seni Digital</option>
+    <option value="Seni_jalanan">Seni Jalanan</option>
+    <option value="Grafiti">Seni Grafiti</option>
+    <option value="Fotografi">Seni Fotografi</option>
+    <option value="Seni_patung">Seni Patung</option>
+    <option value="Seni_keramik">Seni Keramik</option>
+    <option value="Kaligrafi">Seni Kaligrafi</option>
+    <option value="Seni_lukis">Seni Lukis</option>
+    <option value="Seni_grafis">Seni Grafis/Cetak</option>
+    <option value="Kolase">Seni Kolase</option>
+    <option value="Mosaik">Seni Mosaik</option>
+    <option value="Batik">Seni Batik</option>
+    <option value="Ukiran">Seni Ukir</option>
+    <option value="Tenun">Seni Tenun</option>
+    <option value="Bordir">Seni Bordir</option>
+    <option value="Seni_kriya">Seni Kriya</option>
+    <option value="Topeng">Seni Topeng</option>
+    <option value="Wayang">Seni Wayang</option>
+    <option value="Tato">Seni Tato</option>
+    <option value="Lukisan_tubuh">Seni Body Painting</option>
+    <option value="Origami">Origami</option>
+    <option value="Video">Seni Video</option>
                 </select>
             </div>
         </div>
@@ -175,22 +208,48 @@
 
             // Tampilkan spinner
             document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('artDescription').style.display = 'none'; // Sembunyikan deskripsi saat memuat
 
             fetch(apiUrl)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Data tidak ditemukan');
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    // Cek jika data tidak lengkap
+                    if (!data.title || !data.extract) {
+                        throw new Error('Deskripsi tidak tersedia');
+                    }
+
+                    // Tampilkan judul dan deskripsi
                     document.getElementById('artTitle').innerText = data.title;
                     document.getElementById('artText').innerText = data.extract;
-                    document.getElementById('artImage').src = data.thumbnail?.source || '';
-                    document.getElementById('artDescription').style.display = 'block';
 
-                    // Sembunyikan spinner
-                    document.getElementById('loadingSpinner').style.display = 'none';
+                    // Tampilkan gambar jika ada
+                    if (data.thumbnail && data.thumbnail.source) {
+                        document.getElementById('artImage').src = data.thumbnail.source;
+                        document.getElementById('artImage').style.display = 'block';
+                    } else {
+                        document.getElementById('artImage').style.display = 'none';
+                    }
+
+                    // Tampilkan deskripsi
+                    document.getElementById('artDescription').style.display = 'block';
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
+
+                    // Tampilkan pesan error
+                    document.getElementById('artTitle').innerText = 'Error';
+                    document.getElementById('artText').innerText = 'Maaf, deskripsi untuk gaya seni ini tidak tersedia untuk saat ini atau mungkin sedang diperbaharui oleh Wikipedia. Silakan coba gaya seni lain atau anda bisa melakukan Googling.';
+                    document.getElementById('artImage').style.display = 'none';
+                    document.getElementById('artDescription').style.display = 'block';
+                })
+                .finally(() => {
+                    // Sembunyikan spinner
                     document.getElementById('loadingSpinner').style.display = 'none';
-                    alert('Maaf, terjadi kesalahan saat mengambil data. Silakan coba lagi.');
                 });
         });
 
