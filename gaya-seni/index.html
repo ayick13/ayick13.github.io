@@ -70,7 +70,41 @@
                 <h2 class="text-center mb-4 animate__animated animate__fadeIn">Pilih Gaya Seni</h2>
                 <select class="form-select" id="artStyleDropdown">
                     <option value="" selected disabled>-- Pilih Gaya Seni --</option>
-                       <option value="Impresionisme">Impressionisme</option>
+	                       <option 	value="Primitif">Seni Primitif</option>
+	<option value="Mesir_Kuno">Seni Mesir Kuno</option>
+	<option value="Yunani_Kuno">Seni Yunani Kuno</option>
+	<option value="Romawi_Kuno">Seni Romawi Kuno</option>
+	<option value="Bizantium">Seni Bizantium</option>
+	<option value="Seni_rupa_Romanesque">Seni Romanesque</option>
+	<option value="Gothic_Internasional">Seni Gothic Internasional</option>
+	<option value="local_Seni Renaisans Utara">Seni Renaisans Utara</option>
+	<option value="Mannerisme">Seni Mannerisme</option>
+	<option value="Rokoko">Seni Rokoko</option>
+	<option value="Arsitektur_Kebangkitan_Renaisans">Seni Neorenaisans</option>
+	<option value="Persaudaraan_Pra-Raphaelite">Seni Preraphaelite</option>
+	<option value="Orientalisme">Seni Orientalisme</option>
+	<option value="Naivisme">Naivisme</option>
+	<option value="local_Outsider art">Seni Outsider</option>
+	<option value="Nouveau_Réalisme">Nouveau_Réalisme</option>
+	<option value="local_Fluxus art">Seni Fluxus</option>
+	<option value="local_Land Art">Seni Land Art</option>
+	<option value="local_Video Art">Seni Video</option>
+	<option value="local_Interaktif art">Seni Interaktif</option>
+	<option value="Beaux-Arts_de_Paris">Beaux Arts de Paris</option>
+	<option value="Cyberpunk">Seni Cyberpunk</option>
+	<option value="Steampunk">Seni Steampunk</option>
+	<option value="Psikedelia">Seni Psychedelic</option>
+	<option value="Vaporwave">Seni Vaporwave</option>
+	<option value="Glitch">Seni Glitch</option>
+	<option value="Hiperealitas">Seni Hyperrealism</option>
+	<option value="Fotorealisme">Seni Fotorealisme</option>
+	<option value="local_Superflat">Seni Superflat</option>
+	<option value="local_chinoiserie">Seni Chinoiserie</option>
+	<option value="Ukiyo-e">Seni Ukiyo-e</option>
+	<option value="Lukisan_tinta_cair">Seni Sumi-e</option>
+	<option value="local_Tribal">Seni Tribal</option>
+	<option value="Aborigin">Seni Aborigin</option>
+	<option value="Impresionisme">Impressionisme</option>
     <option value="Kubisme">Kubisme</option>
     <option value="Surealisme">Surealisme</option>
     <option value="Seni_abstrak">Seni Abstrak</option>
@@ -125,6 +159,10 @@
     <option value="Tato">Seni Tato</option>
     <option value="Lukisan_tubuh">Seni Body Painting</option>
     <option value="Origami">Origami</option>
+    <option value="local_Gaya Seni A">Gaya Seni A</option>
+    <option value="local_Gaya Seni B">Gaya Seni B</option>
+    <option value="local_Gaya Seni C">Gaya Seni C</option>
+    <option value="local_Gaya Seni D">Gaya Seni D</option>
     <option value="Video">Seni Video</option>
                 </select>
             </div>
@@ -172,6 +210,37 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Contact Form -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Formulir Kontak</h3>
+                        <form action="mailto:email@example.com" method="POST" enctype="text/plain">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subjek</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Isi Pesan</label>
+                                <textarea class="form-control" id="message" name="body" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Kirim via Email</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- Social Sharing -->
         <div class="row mt-5">
@@ -206,10 +275,88 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
-    <script>
-        // Fetch data from Wikipedia API (Bahasa Indonesia)
+    <script>// Data gaya seni lokal
+        const localArtStyles = [
+            {
+                title: "Seni Renaisans Utara",
+                description: "Seni Renaisans Utara adalah gaya seni yang berkembang di Eropa Utara pada abad ke-15 dan ke-16. Ciri-ciri seni ini adalah penggunaan cat minyak, perspektif linear, dan realisme.Ciri khas seni Renaisans Utara meliputi perspektif linear, inspirasi alami, elemen realistis, lukisan cat minyak, kayu, iluminasi, dan agama.",
+                image: "tidak-tersedia.png"
+            },
+            {
+                title: "Outsider art",
+                description: "Outsider art adalah seni yang dibuat oleh orang yang tidak terlatih secara tradisional dan tidak memiliki banyak kontak dengan dunia seni. Istilah ini pertama kali digunakan oleh kritikus seni Roger Cardinal pada tahun 1972..",
+                image: "tidak-tersedia.png"
+            },
+            {
+                title: "Fluxus art",
+                description: "Fluxus adalah aliran seni yang menggabungkan berbagai media, seperti suara, gambar, teks, dan objek sehari-hari, untuk menciptakan karya seni baru. Aliran seni ini juga dikenal sebagai jaringan seniman dan komposer internasional. Ciri-ciri seni Fluxus adalah Intermedia, yaitu menggabungkan berbagai media Sederhana, seperti karya seni yang kecil, teks yang pendek, dan pertunjukan yang singkat Menyenangkan, humor merupakan unsur penting dalam Fluxus",
+                image: "tidak-tersedia.png"
+            },
+           {
+                title: "Land Art",
+                description: "Land art atau seni tanah adalah gerakan seni yang menggabungkan lanskap dan karya seni. Seni tanah juga dikenal sebagai Earth art, environmental art, dan Earthworks.",
+                image: "https://artandcrafter.com/wp-content/uploads/2023/06/Land-art-2.jpg"
+            },
+            {
+                title: "Video Art",
+                description: "video art adalah karya seni yang menggunakan video sebagai media utama untuk menyampaikan pesan artistik. Video art muncul pada akhir tahun 1960-an.",
+                image: "tidak-tersedia.png"
+            },
+              {
+                title: "Interaktif art",
+                description: "Interaktif Art adalah genre seni yang melibatkan penonton dalam menentukan hasil karya seni.Penonton bisa berpartisipasi dengan memberikan masukan.",
+                image: "tidak-tersedia.png"
+            },
+            {
+            title: "Superflat",
+            description: "gerakan seni populis yang muncul di Los Angeles pada akhir tahun 1970-an. Gerakan ini juga dikenal dengan sebutan surealisme pop.",
+                
+                image: "tidak-tersedia.png"
+            },
+                        {
+            title: "chinoiserie",
+            description: "gaya seni yang berhubungan dengan gaya Rococo, dan berfokus pada unsur-unsur yang dianggap khas budaya Tiongkok oleh orang Eropa",
+                
+                image: "tidak-tersedia.png"
+            },
+                        {
+            title: "Tribal",
+            description: "Seni Tribal adalah seni visual dan budaya material masyarakat adat. Dikenal juga sebagai seni non-Barat atau seni etnografi, atau, secara kontroversial, seni primitif,seni suku secara historis telah dikoleksi oleh antropolog Barat, kolektor pribadi, dan museum, khususnya museum etnografi dan sejarah alam.Istilah primitif dikritik karena bersifat Eurosentris dan merendahkan.",
+                
+                image: "tidak-tersedia.png"
+            }
+        ];
+
+        // Fungsi untuk menampilkan data gaya seni lokal
+        function showLocalArtStyle(selectedArt) {
+            const art = localArtStyles.find(style => style.title === selectedArt);
+            if (art) {
+                document.getElementById('artTitle').innerText = art.title;
+                document.getElementById('artText').innerText = art.description;
+                document.getElementById('artImage').src = art.image;
+                document.getElementById('artDescription').style.display = 'block';
+            } else {
+                document.getElementById('artTitle').innerText = 'Error';
+                document.getElementById('artText').innerText = 'Maaf, deskripsi untuk gaya seni ini tidak tersedia.';
+                document.getElementById('artImage').style.display = 'none';
+                document.getElementById('artDescription').style.display = 'block';
+            }
+        }
+
+        // Event listener untuk dropdown
         document.getElementById('artStyleDropdown').addEventListener('change', function() {
             const selectedArt = this.value;
+            if (selectedArt.startsWith("local_")) {
+                // Tampilkan data lokal
+                showLocalArtStyle(selectedArt.replace("local_", ""));
+            } else {
+                // Tampilkan data dari Wikipedia API
+                fetchWikipediaData(selectedArt);
+            }
+        });
+
+        // Fetch data from Wikipedia API (Bahasa Indonesia)
+        function fetchWikipediaData(selectedArt) {
             const apiUrl = `https://id.wikipedia.org/api/rest_v1/page/summary/${selectedArt}`;
 
             // Tampilkan spinner
@@ -249,7 +396,7 @@
 
                     // Tampilkan pesan error
                     document.getElementById('artTitle').innerText = 'Error';
-                    document.getElementById('artText').innerText = 'Maaf, deskripsi untuk gaya seni ini tidak tersedia untuk saat ini atau mungkin sedang diperbaharui oleh Wikipedia. Silakan coba gaya seni lain atau anda bisa melakukan Googling.';
+                    document.getElementById('artText').innerText = 'Maaf, deskripsi untuk gaya seni ini tidak tersedia. Silakan coba gaya seni lain.';
                     document.getElementById('artImage').style.display = 'none';
                     document.getElementById('artDescription').style.display = 'block';
                 })
@@ -257,7 +404,7 @@
                     // Sembunyikan spinner
                     document.getElementById('loadingSpinner').style.display = 'none';
                 });
-        });
+        }
 
         // Back to Top Button
         document.getElementById('backToTop').addEventListener('click', () => {
