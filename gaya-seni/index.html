@@ -49,6 +49,21 @@
             top: 20px;
             right: 20px;
         }
+           /* Tambahkan di dalam <style> */
+   .d-flex {
+       display: flex;
+   }
+   .ms-3 {
+       margin-left: 1rem;
+   }
+   .me-2 {
+       margin-right: 0.5rem;
+       margin-top: 0.7rem;
+   }
+   .form-control .wkg{
+       width: 200px;
+       /* Sesuaikan lebar sesuai kebutuhan */
+       }
     </style>
 </head>
 <body>
@@ -57,6 +72,33 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Referensi Gaya Seni</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#beranda">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tentang.html">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Lainnya
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Gaya Seni</a></li>
+                            <li><a class="dropdown-item" href="#galeri">Galeri</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#bantuan">Bantuan</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
             <button id="toggleDarkMode" class="btn btn-secondary">
                 <i class="fas fa-moon"></i> Dark Mode
             </button>
@@ -165,6 +207,11 @@
     <option value="local_Gaya Seni D">Gaya Seni D</option>
     <option value="Video">Seni Video</option>
                 </select>
+                  <!-- Form Pencarian -->
+                   <form class="d-flex" id="searchForm">
+                <input class="form-control  wkg me-2" type="search" id="searchQuery" placeholder="Cari di Google..." aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Cari</button>
+            </form>
             </div>
         </div>
 
@@ -185,7 +232,7 @@
                         </button>
                         <h3 id="artTitle"></h3>
                         <p id="artText"></p>
-                        <img id="artImage" src="" alt="" class="img-fluid mb-3" loading="lazy" onerror="this.src='placeholder.jpg';">
+                        <img id="artImage" src="" alt="" class="img-fluid mb-3" loading="lazy" onerror="this.src='tidak-tesedia.png';">
                     </div>
                 </div>
             </div>
@@ -214,9 +261,9 @@
         <!-- Contact Form -->
         <div class="row mt-5">
             <div class="col-md-8 mx-auto">
-                <div class="card">
+                <div id="contact" class="card">
                     <div class="card-body">
-                        <h3 class="text-center mb-4">Formulir Kontak</h3>
+                        <h3 class="text-center mb-4">Hubungi Kami</h3>
                         <form action="mailto:email@example.com" method="POST" enctype="text/plain">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama</label>
@@ -427,6 +474,21 @@
         document.getElementById('toggleDarkMode').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
         });
+        
+        // Fungsi untuk menangani pencarian
+document.addEventListener('DOMContentLoaded', function() {
+    // Fungsi untuk menangani pencarian
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah form dari pengiriman default
+        const query = document.getElementById('searchQuery').value;
+        if (query) {
+            const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.open(googleUrl, '_blank');
+        }
+    });
+
+    // Fungsi lainnya tetap sama
+});
     </script>
 </body>
 </html>
