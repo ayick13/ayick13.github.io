@@ -403,7 +403,7 @@ input[type="range"]::-moz-range-track {
        document.getElementById('reset-token-btn').addEventListener('click', () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-        user.tokens = 5; // Reset token ke 5
+        user.tokens = 100; // Reset token ke 100
         localStorage.setItem('user', JSON.stringify(user));
     } else {
         // Jika user belum terdaftar, buat data user baru dengan token default
@@ -430,7 +430,7 @@ input[type="range"]::-moz-range-track {
     Swal.fire({
         icon: 'success',
         title: 'Token Direset',
-        text: 'Token telah direset ke nilai default (5).',
+        text: 'Token telah direset ke nilai default (100).',
         confirmButtonText: 'OK',
     });
 });
