@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - AI Generated Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        }
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .form-control, .form-select, .form-range {
+            margin-bottom: 15px;
+        }
+        .btn:disabled {
+            cursor: not-allowed;
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-group .form-control {
+            padding-right: 40px;
+        }
+        .input-group .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+            z-index: 10;
+        }
+        .input-group .toggle-password:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Register</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <form id="register-form">
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label class="form-label">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="username" placeholder="Masukkan username" required>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                        </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="Masukkan password" minlength="6" required>
+                                <span class="toggle-password" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Konfirmasi Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Konfirmasi password" minlength="6" required>
+                                <span class="toggle-password" onclick="togglePassword('confirm-password')">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Tombol Register -->
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                        <!-- Link ke Login -->
+                        <div class="mt-3 text-center">
+                            Sudah punya akun? <a href="login.html">Login di sini</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom JS -->
+    <script>
+        // Fungsi untuk menangani form register
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Debugging
+            console.log('Username:', username);
+            console.log('Email:', email);
+            console.log('Password:', password);
+            console.log('Confirm Password:', confirmPassword);
+
+            // Validasi input
+            if (password !== confirmPassword) {
+                console.log('Registrasi gagal: Konfirmasi password tidak sesuai.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Konfirmasi password tidak sesuai!',
+                });
+                return;
+            }
+
+            // Simpan data pengguna di localStorage
+            const user = {
+                username: username,
+                email: email,
+                password: password,
+                tokens: 10 // Berikan 5 koin setelah registrasi
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+
+            // Debugging: Periksa data yang disimpan
+            const savedUser = JSON.parse(localStorage.getItem('user'));
+            console.log('Data pengguna yang disimpan:', savedUser);
+
+            // Tampilkan notifikasi sukses
+            Swal.fire({
+                icon: 'success',
+                title: 'Registrasi Berhasil!',
+                text: 'Anda telah terdaftar dan mendapatkan 5 koin.',
+                confirmButtonText: 'OK',
+            }).then(() => {
+                console.log('Redirecting to login.html...');
+                window.location.href = 'login.html'; // Arahkan ke halaman login
+            });
+        });
+
+        // Fungsi untuk toggle show/hide password
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.querySelector(`#${inputId} + .toggle-password i`);
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>
