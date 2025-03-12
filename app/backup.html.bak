@@ -126,7 +126,7 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     height: 8px;
-    background: linear-gradient(to right, #007bff, #00bfff); /* Gradien warna */
+    background: linear-gradient(to right, #cc2f6e, #d11111); /* Gradien warna */
     background-size: var(--background-size, 0%) 100%; /* Ukuran latar belakang */
     background-repeat: no-repeat;
     border-radius: 5px;
@@ -134,7 +134,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 input[type="range"]::-moz-range-track {
     height: 8px;
-    background: linear-gradient(to right, #007bff, #00bfff); /* Gradien warna */
+    background: linear-gradient(to right, #cc2f6e, #d11111); /* Gradien warna */
     background-size: var(--background-size, 0%) 100%; /* Ukuran latar belakang */
     background-repeat: no-repeat;
     border-radius: 5px;
@@ -340,17 +340,17 @@ input[type="range"]::-moz-range-track {
         <div class="navbar-bottom">
             <a href="#" class="btn btn-link"><i class="fas fa-home"></i></a>
             <a href="#" class="btn btn-link"><i class="fas fa-coins"></i> <span id="token-count">5</span></a>
-            <a href="#" class="btn btn-link"><i class="fas fa-user"></i></a>
+            <a href="login.html" class="btn btn-link"><i class="fas fa-user"></i></a>
 			<a href="langganan.html" class="btn btn-link"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <!-- Toggle Mode Gelap -->
         <button class="btn btn-dark" id="dark-mode-toggle" style="position: fixed; top: 10px; right: 10px;">
             <i class="fas fa-moon"></i> Mode Gelap
         </button>
-        <!-- Tombol Reset Token (Testing) -->
+        <!-- Tombol Reset Token (Testing) 
         <button class="btn btn-warning" id="reset-token-btn" style="position: fixed; bottom: 70px; right: 10px;">
             <i class="fas fa-sync-alt"></i> Reset Token (Testing)
-        </button>
+        </button> -->
     </div>
 
     <!-- Bootstrap JS -->
@@ -359,23 +359,23 @@ input[type="range"]::-moz-range-track {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom JS -->
     <script>
-        // Fungsi untuk mengambil token dari localStorage
-        function getTokenCount() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            return user ? user.tokens : 0; // Jika user tidak ditemukan, kembalikan 0
-        }
+// Fungsi untuk mengambil jumlah token dari localStorage
+function getTokenCount() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user ? user.tokens : 0; // Jika user tidak ditemukan, kembalikan 0
+}
 
-        // Fungsi untuk menampilkan alert jika validasi gagal
-        function showValidationError(message) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: message,
-            });
-        }
+// Fungsi untuk menampilkan pesan error validasi
+function showValidationError(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+    });
+}
 
-        // Fungsi untuk memeriksa token saat halaman dimuat
-        function checkTokenOnLoad() {
+// Fungsi untuk memeriksa token saat halaman dimuat
+function checkTokenOnLoad() {
     const tokens = getTokenCount();
     const generateBtn = document.getElementById('generate-btn');
     const subscribeLink = document.getElementById('subscribe-link');
@@ -393,101 +393,8 @@ input[type="range"]::-moz-range-track {
     }
 }
 
-        // Panggil fungsi checkTokenOnLoad saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', () => {
-            checkTokenOnLoad(); // Periksa token saat halaman dimuat
-            document.getElementById('token-count').textContent = getTokenCount(); // Perbarui tampilan token
-        });
-
-        // Fungsi untuk mereset token ke nilai default
-       document.getElementById('reset-token-btn').addEventListener('click', () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-        user.tokens = 5; // Reset token ke 5
-        localStorage.setItem('user', JSON.stringify(user));
-    } else {
-        // Jika user belum terdaftar, buat data user baru dengan token default
-        const newUser = {
-            username: 'testuser',
-            email: 'test@example.com',
-            password: 'test123',
-            tokens: 5
-        };
-        localStorage.setItem('user', JSON.stringify(newUser));
-    }
-
-    // Perbarui tampilan token
-    document.getElementById('token-count').textContent = 5;
-
-    // Aktifkan tombol Generate dan sembunyikan link langganan
-    const generateBtn = document.getElementById('generate-btn');
-    generateBtn.disabled = false;
-    generateBtn.innerHTML = '<i class="fas fa-magic"></i> Generate';
-    generateBtn.classList.remove('btn-danger');
-    document.getElementById('subscribe-link').style.display = 'none'; // Sembunyikan link langganan
-
-    // Tampilkan notifikasi sukses
-    Swal.fire({
-        icon: 'success',
-        title: 'Token Direset',
-        text: 'Token telah direset ke nilai default (5).',
-        confirmButtonText: 'OK',
-    });
-});
-
-        // Fungsi untuk memilih gambar acak
-        function getRandomImage() {
-            const imageList = [
-                'assets/1.jpeg',
-                'assets/2.jpeg',
-                'assets/3.jpeg',
-                'assets/4.jpeg',
-                'assets/5.jpeg',
-                'assets/6.jpeg',
-                'assets/7.jpeg',
-                'assets/8.jpeg',
-                'assets/9.jpeg',
-                'assets/10.jpeg',
-                'assets/11.jpeg',
-                'assets/12.jpeg',
-				'assets/13.jpeg',
-				'assets/14.jpeg',
-				'assets/15.jpeg',
-				'assets/16.jpeg',
-				'assets/17.jpeg',
-				'assets/18.jpeg'
-            ];
-            const randomIndex = Math.floor(Math.random() * imageList.length);
-            return imageList[randomIndex];
-        }
-		
-		// slide Resolusi
-		const resolutionSlider = document.getElementById('resolution-slider');
-const resolutionLabel = document.getElementById('resolution-label');
-
-// Array yang menyimpan opsi resolusi
-const resolutions = [
-    '1024x1024 (Square)',  // Nilai 0
-    '1024x1792 (Portrait)', // Nilai 1
-    '1792x1024 (Landscape)' // Nilai 2
-];
-
-// Event listener untuk mengupdate label dan warna saat slider digeser
-resolutionSlider.addEventListener('input', () => {
-    const selectedResolution = resolutions[resolutionSlider.value];
-    resolutionLabel.textContent = selectedResolution;
-
-    // Update warna latar belakang slider berdasarkan nilai
-    const value = (resolutionSlider.value - resolutionSlider.min) / (resolutionSlider.max - resolutionSlider.min) * 100;
-    resolutionSlider.style.setProperty('--background-size', `${value}%`);
-});
-
-// Inisialisasi label dan warna saat halaman dimuat
-resolutionLabel.textContent = resolutions[resolutionSlider.value];
-const initialValue = (resolutionSlider.value - resolutionSlider.min) / (resolutionSlider.max - resolutionSlider.min) * 100;
-resolutionSlider.style.setProperty('--background-size', `${initialValue}%`);
-
-        function generateImage() {
+// Fungsi untuk menghasilkan gambar
+function generateImage() {
     const tokens = getTokenCount();
     if (tokens > 0) {
         // Kurangi token
@@ -529,17 +436,12 @@ resolutionSlider.style.setProperty('--background-size', `${initialValue}%`);
 
                 // Jika token habis, nonaktifkan tombol Generate dan tampilkan link langganan
                 if (user.tokens === 0) {
-                    const generateBtn = document.getElementById('generate-btn');
-                    generateBtn.disabled = true;
-                    generateBtn.innerHTML = '<i class="fas fa-lock"></i> Generate (Token Habis)';
-                    generateBtn.classList.add('btn-danger');
-                    document.getElementById('subscribe-link').style.display = 'block'; // Tampilkan link langganan
+                    checkTokenOnLoad();
                 }
             }
         }, 300); // Interval simulasi progress
     } else {
-	
-        // Jika token habis, arahkan ke halaman login
+        // Jika token habis, tampilkan peringatan
         Swal.fire({
             icon: 'warning',
             title: 'Token Habis',
@@ -553,91 +455,162 @@ resolutionSlider.style.setProperty('--background-size', `${initialValue}%`);
     }
 }
 
-        // Validasi Form dan Generate Gambar
-        document.getElementById('generate-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+// Fungsi untuk mendapatkan gambar acak dari folder assets
+function getRandomImage() {
+    const imageList = [
+        'assets/1.jpeg',
+        'assets/2.jpeg',
+        'assets/3.jpeg',
+        'assets/4.jpeg',
+        'assets/5.jpeg',
+        'assets/6.jpeg',
+        'assets/7.jpeg',
+        'assets/8.jpeg',
+        'assets/9.jpeg',
+        'assets/10.jpeg',
+        'assets/11.jpeg',
+        'assets/12.jpeg',
+        'assets/13.jpeg',
+        'assets/14.jpeg',
+        'assets/15.jpeg',
+        'assets/16.jpeg',
+        'assets/17.jpeg',
+        'assets/18.jpeg'
+    ];
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    return imageList[randomIndex];
+}
+	// slide Resolusi
+		const resolutionSlider = document.getElementById('resolution-slider');
+const resolutionLabel = document.getElementById('resolution-label');
 
-            // Ambil nilai input
-            const selectedModel = document.querySelector('input[name="model"]:checked');
-            const prompt = document.getElementById('prompt').value;
+// Array yang menyimpan opsi resolusi
+const resolutions = [
+    '1024x1024 (Square)',  // Nilai 0
+    '1024x1792 (Portrait)', // Nilai 1
+    '1792x1024 (Landscape)' // Nilai 2
+];
 
-            // Validasi input
-            if (!selectedModel) {
-                showValidationError('Harap pilih model AI terlebih dahulu!');
-                return; // Hentikan proses jika model AI tidak dipilih
+// Event listener untuk mengupdate label dan warna saat slider digeser
+resolutionSlider.addEventListener('input', () => {
+    const selectedResolution = resolutions[resolutionSlider.value];
+    resolutionLabel.textContent = selectedResolution;
+
+    // Update warna latar belakang slider berdasarkan nilai
+    const value = (resolutionSlider.value - resolutionSlider.min) / (resolutionSlider.max - resolutionSlider.min) * 100;
+    resolutionSlider.style.setProperty('--background-size', `${value}%`);
+});
+
+// Inisialisasi label dan warna saat halaman dimuat
+resolutionLabel.textContent = resolutions[resolutionSlider.value];
+const initialValue = (resolutionSlider.value - resolutionSlider.min) / (resolutionSlider.max - resolutionSlider.min) * 100;
+resolutionSlider.style.setProperty('--background-size', `${initialValue}%`);
+
+// Inisialisasi token default saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    // Periksa apakah token sudah ada di localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        // Jika user belum terdaftar, buat data user baru dengan token default
+        const newUser = {
+            username: 'testuser',
+            email: 'test@example.com',
+            password: 'test123',
+            tokens: 5 // Token default
+        };
+        localStorage.setItem('user', JSON.stringify(newUser));
+    }
+
+    // Periksa token dan perbarui tampilan
+    checkTokenOnLoad();
+    document.getElementById('token-count').textContent = getTokenCount();
+});
+
+// Validasi Form dan Generate Gambar
+document.getElementById('generate-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Ambil nilai input
+    const selectedModel = document.querySelector('input[name="model"]:checked');
+    const prompt = document.getElementById('prompt').value;
+
+    // Validasi input
+    if (!selectedModel) {
+        showValidationError('Harap pilih model AI terlebih dahulu!');
+        return; // Hentikan proses jika model AI tidak dipilih
+    }
+
+    if (!prompt || prompt.length < 2) {
+        showValidationError('Prompt harus diisi minimal 2 karakter!');
+        return; // Hentikan proses jika prompt tidak valid
+    }
+
+    // Lanjutkan proses generate gambar jika validasi berhasil
+    generateImage();
+});
+
+// Kontrol Gambar (Zoom dan Rotate)
+let currentScale = 1;
+let currentRotation = 0;
+
+document.getElementById('zoom-in').addEventListener('click', () => {
+    if (currentScale < 3) {
+        currentScale += 0.5;
+        document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
+    }
+});
+
+document.getElementById('zoom-out').addEventListener('click', () => {
+    if (currentScale > 1) {
+        currentScale -= 0.5;
+        document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
+    }
+});
+
+document.getElementById('rotate').addEventListener('click', () => {
+    currentRotation = (currentRotation + 90) % 360;
+    document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
+});
+
+// Rating Interaktif
+const stars = document.querySelectorAll('.rating-star');
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        const value = star.getAttribute('data-value');
+        stars.forEach(s => {
+            if (s.getAttribute('data-value') <= value) {
+                s.classList.add('active');
+            } else {
+                s.classList.remove('active');
             }
-
-            if (!prompt || prompt.length < 0) {
-                showValidationError('Prompt harus diisi minimal 0 karakter!');
-                return; // Hentikan proses jika prompt tidak valid
-            }
-
-            // Lanjutkan proses generate gambar jika validasi berhasil
-            generateImage();
         });
+    });
+});
 
-        // Kontrol Gambar
-        let currentScale = 1;
-        let currentRotation = 0;
+// Tombol Reset Form
+document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('generate-form').reset(); // Reset form
+    document.getElementById('art-preview').innerHTML = ''; // Hapus preview gaya seni
+    document.getElementById('image-container').style.display = 'none'; // Sembunyikan gambar
+    document.getElementById('download-btn').style.display = 'none'; // Sembunyikan tombol unduh
+});
 
-        document.getElementById('zoom-in').addEventListener('click', () => {
-            if (currentScale < 3) {
-                currentScale += 0.5;
-                document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
-            }
-        });
+// Tombol Unduh Gambar
+document.getElementById('download-btn').addEventListener('click', () => {
+    const image = document.getElementById('generated-image');
+    const link = document.createElement('a');
+    link.href = image.src;
+    link.download = 'generated-image.png';
+    link.click();
+});
 
-        document.getElementById('zoom-out').addEventListener('click', () => {
-            if (currentScale > 1) {
-                currentScale -= 0.5;
-                document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
-            }
-        });
-
-        document.getElementById('rotate').addEventListener('click', () => {
-            currentRotation = (currentRotation + 90) % 360;
-            document.getElementById('generated-image').style.transform = `scale(${currentScale}) rotate(${currentRotation}deg)`;
-        });
-
-        // Rating Interaktif
-        const stars = document.querySelectorAll('.rating-star');
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                const value = star.getAttribute('data-value');
-                stars.forEach(s => {
-                    if (s.getAttribute('data-value') <= value) {
-                        s.classList.add('active');
-                    } else {
-                        s.classList.remove('active');
-                    }
-                });
-            });
-        });
-
-        // Tombol Reset
-        document.getElementById('reset-btn').addEventListener('click', () => {
-            document.getElementById('generate-form').reset(); // Reset form
-            document.getElementById('art-preview').innerHTML = ''; // Hapus preview gaya seni
-            document.getElementById('image-container').style.display = 'none'; // Sembunyikan gambar
-            document.getElementById('download-btn').style.display = 'none'; // Sembunyikan tombol unduh
-        });
-
-        // Tombol Unduh Gambar
-        document.getElementById('download-btn').addEventListener('click', () => {
-            const image = document.getElementById('generated-image');
-            const link = document.createElement('a');
-            link.href = image.src;
-            link.download = 'generated-image.png';
-            link.click();
-        });
-
-        // Toggle Mode Gelap
-        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.getElementById('dark-mode-toggle').innerHTML = document.body.classList.contains('dark-mode')
-                ? '<i class="fas fa-sun"></i> Mode Terang'
-                : '<i class="fas fa-moon"></i> Mode Gelap';
-        });
+// Toggle Mode Gelap
+document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    document.getElementById('dark-mode-toggle').innerHTML = document.body.classList.contains('dark-mode')
+        ? '<i class="fas fa-sun"></i> Mode Terang'
+        : '<i class="fas fa-moon"></i> Mode Gelap';
+});
     </script>
 </body>
 </html>
