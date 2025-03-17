@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa; /* Warna background utama */
+            font-family: Arial, sans-serif;
+            color: #333333; /* Warna teks utama */
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff; /* Warna background top bar */
+            border-bottom: 1px solid #e9ecef;
+        }
+        .top-bar .koloni-semut {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333; /* Warna teks top bar */
+        }
+        .top-bar .icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .top-bar .icons .gear-icon,
+        .top-bar .icons .bell-icon {
+            font-size: 1.2rem;
+            color: #333; /* Warna ikon top bar */
+            cursor: pointer;
+        }
+        .top-bar .icons .bell-icon {
+            position: relative;
+        }
+        .top-bar .icons .bell-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff4757; /* Warna badge notifikasi */
+            color: #ffffff;
+            font-size: 0.7rem;
+            padding: 3px 6px;
+            border-radius: 50%;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: #ffffff; /* Warna background header */
+            border-bottom: 1px solid #e9ecef;
+        }
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #007bff; /* Warna border foto profil */
+        }
+        .profile-info {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .profile-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-icon:hover {
+    background-color: #0056b3;
+}
+        .invite-friends {
+            font-size: 0.9rem;
+            color: #ffffff; /* Warna teks tombol */
+            background-color: #FFA500; /* Warna background tombol */
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .invite-friends:hover {
+            background-color: #e69500; /* Warna hover tombol */
+        }
+        .banner {
+            background: linear-gradient(90deg, #007bff, #6f42c1); /* Gradasi biru ke ungu */
+            padding: 20px;
+            color: #ffffff; /* Warna teks banner */
+            border-radius: 10px;
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner .total-saldo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .banner .total-saldo p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .banner .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .banner .actions .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            color: #ffffff; /* Warna teks tombol */
+        }
+        .banner .actions .btn.withdraw {
+            background-color: #ff4757; /* Warna tombol Withdraw */
+        }
+        .banner .actions .btn.recharge {
+            background-color: #28a745; /* Warna tombol Recharge */
+        }
+        .achievement-item {
+            text-align: center;
+            padding: 15px;
+            background-color: #ffffff; /* Warna background card */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .achievement-item:hover {
+            transform: translateY(-5px);
+        }
+        .achievement-item i {
+            font-size: 30px;
+            color: #007bff; /* Warna ikon card */
+            margin-bottom: 10px;
+        }
+        .achievement-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .achievement-item p {
+            font-size: 0.8rem;
+            color: #6c757d; /* Warna teks deskripsi card */
+        }
+        .section-spacing {
+            margin-bottom: 10px;
+            margin-top: 30px;
+        }
+        .chart-container {
+            background-color: #ffffff; /* Warna background chart */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .pie-chart-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .pie-chart-item {
+            width: 48%;
+            background-color: #ffffff; /* Warna background pie chart */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .calendar-container {
+            background-color: #ffffff; /* Warna background kalender */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        .calendar-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .calendar-actions .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            color: #ffffff; /* Warna teks tombol kalender */
+        }
+        .calendar-actions .btn.add-schedule {
+            background-color: #007bff; /* Warna tombol Tambah Jadwal */
+        }
+        .calendar-actions .btn.view-all {
+            background-color: #28a745; /* Warna tombol Lihat Semua */
+        }
+        .calendar-actions .btn.filter {
+            background-color: #6f42c1; /* Warna tombol Filter */
+        }
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .top-bar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .profile-header {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .banner {
+    background: linear-gradient(90deg, #333, #444);
+    color: #ffffff;
+}
+
+.dark-mode .achievement-item {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .chart-container,
+.dark-mode .pie-chart-item,
+.dark-mode .calendar-container {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+    border-color: #333;
+}
+
+.dark-mode .form-control {
+    background-color: #333;
+    color: #ffffff;
+    border-color: #444;
+}
+
+.dark-mode .btn-secondary {
+    background-color: #444;
+    border-color: #444;
+}
+
+.dark-mode .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.flag-icon {
+    font-size: 24px; /* Sesuaikan ukuran emoji */
+    cursor: pointer;
+}
+
+/* Chat Box */
+.chat-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Awalnya disembunyikan */
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chat-box.active {
+    display: flex; /* Muncul saat aktif */
+}
+
+.chat-header {
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h5 {
+    margin: 0;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.chat-footer {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.chat-footer input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+}
+
+.chat-footer button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-footer button:hover {
+    background-color: #0056b3;
+}
+
+/* Tombol Chat Icon */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.chat-icon:hover {
+    background-color: #0056b3;
+}
+
+/* Notifikasi Transaksi */
+#transactionNotifications {
+    position: fixed;
+    top: 100px; /* Sesuaikan dengan posisi banner */
+    right: 20px;
+    z-index: 1000;
+}
+
+.transaction-notification {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    animation: slideIn 4s ease-out, fadeOut 3s ease-out 4s; /* Diperlambat */
+    opacity: 0;
+}
+
+.transaction-notification.income {
+    background-color: #28a745; /* Warna untuk uang masuk */
+}
+
+.transaction-notification.expense {
+    background-color: #dc3545; /* Warna untuk uang keluar */
+}
+
+/* Animasi Slide In */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animasi Fade Out */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="koloni-semut">Koloni Semut</div>
+    <div class="icons">
+        <!-- Tombol Bahasa -->
+        <div class="language-toggle">
+            <span id="indonesiaFlag" class="flag-icon">🇮🇩</span>
+            <span id="englishFlag" class="flag-icon" style="display: none;">🇬🇧</span>
+        </div>
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon" style="display: none;"></i>
+        </div>
+        <!-- Notifikasi dan Pengaturan -->
+        <div class="bell-icon">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+        </div>
+        <div class="gear-icon">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+</div>
+
+    <!-- Header Profil -->
+    <header class="profile-header">
+<div class="profile-info">
+    <div class="profile-picture-container">
+        <img src="profile-picture.jpeg" alt="Foto Profil" class="profile-picture">
+        <i class="fas fa-pencil edit-icon"></i> <!-- Ikon pensil -->
+    </div>
+    <h1 class="display-5">Arif Tirtana</h1>
+    <p class="lead">ID: 457321W</p>
+</div>
+        <div class="invite-friends">
+            <i class="fas fa-user-plus"></i> Invite Friends
+        </div>
+    </header>
+    
+	<!-- Notifikasi Transaksi -->
+<div id="transactionNotifications">
+    <!-- Notifikasi akan ditambahkan secara dinamis -->
+</div>
+    
+    <!-- Banner -->
+    <section class="banner">
+        <div class="total-saldo">
+            <h2>Total Saldo</h2>
+            <p id="totalSaldo">Rp 155.670.080</p>
+        </div>
+        <div class="actions">
+            <button class="btn withdraw">Withdraw</button>
+            <button class="btn recharge">Recharge</button>
+        </div>
+    </section>
+    
+    	<!-- Notifikasi Transaksi -->
+<div id="transactionNotifications">
+    <!-- Notifikasi akan ditambahkan secara dinamis -->
+</div>
+    <!-- Pie Chart Section -->
+    <section class="pie-chart-container">
+        <div class="pie-chart-item">
+            <h3 class="text-center">Distribusi Saldo</h3>
+            <canvas id="pieChart1"></canvas>
+        </div>
+        <div class="pie-chart-item">
+            <h3 class="text-center">Distribusi Deposit</h3>
+            <canvas id="pieChart2"></canvas>
+        </div>
+    </section>
+
+    <!-- Bagian Statistik -->
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row">
+                <!-- Kolom 1: Saldo -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-wallet"></i>
+                        <h3 id="saldoPercentage">60%</h3>
+                        <p>Saldo</p>
+                    </div>
+                </div>
+                <!-- Kolom 2: Deposit -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3 id="depositPercentage">90%</h3>
+                        <p>Deposit</p>
+                    </div>
+                </div>
+                <!-- Kolom 3: Anggota -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-users"></i>
+                        <h3>785</h3>
+                        <p>Anggota</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baris 2: Transaksi Terakhir -->
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row">
+                <!-- Kolom 1: Transaksi 1 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-receipt"></i>
+                        <h3>Rp 500rb</h3>
+                        <p>Tagihan</p>
+                    </div>
+                </div>
+                <!-- Kolom 2: Transaksi 2 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>Rp 1,2jt</h3>
+                        <p>Gaji</p>
+                    </div>
+                </div>
+                <!-- Kolom 3: Transaksi 3 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Rp 300rb</h3>
+                        <p>Belanja</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baris 3: Riwayat Aktivitas -->
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row">
+                <!-- Kolom 1: Aktivitas 1 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Login</h3>
+                        <p>17 Mar</p>
+                    </div>
+                </div>
+                <!-- Kolom 2: Aktivitas 2 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Bayar</h3>
+                        <p>16 Mar</p>
+                    </div>
+                </div>
+                <!-- Kolom 3: Aktivitas 3 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Transfer</h3>
+                        <p>15 Mar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baris 4: Target Bulanan -->
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row">
+                <!-- Kolom 1: Target 1 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>80%</h3>
+                        <p>Tabungan</p>
+                    </div>
+                </div>
+                <!-- Kolom 2: Target 2 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>50%</h3>
+                        <p>Investasi</p>
+                    </div>
+                </div>
+                <!-- Kolom 3: Target 3 -->
+                <div class="col-4">
+                    <div class="achievement-item">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>70%</h3>
+                        <p>Donasi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flowchart Statistik -->
+    <section class="chart-container">
+        <div class="container">
+            <h2 class="text-center mb-4">Statistik Flowchart</h2>
+            <canvas id="myChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Kalender dan Tombol -->
+    <section class="calendar-container">
+        <div class="calendar-actions">
+            <button class="btn add-schedule">Tambah Jadwal</button>
+            <button class="btn view-all">Lihat Semua</button>
+            <button class="btn filter">Filter</button>
+        </div>
+        <div id="calendar"></div>
+    </section>
+
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Notifikasi Terbaru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <!-- Notifikasi 1: Transaksi Berhasil -->
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <span>Transaksi berhasil: Transfer ke rekening 123456 senilai Rp 500.000</span>
+                            </div>
+                            <small class="text-muted">17 Mar 2025</small>
+                        </div>
+                    </li>
+                    <!-- Notifikasi 2: Pembaruan Sistem -->
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-info-circle text-primary me-2"></i>
+                                <span>Pembaruan sistem: Versi terbaru aplikasi sudah tersedia.</span>
+                            </div>
+                            <small class="text-muted">16 Mar 2025</small>
+                        </div>
+                    </li>
+                    <!-- Notifikasi 3: Tagihan Berhasil Dibayar -->
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-receipt text-warning me-2"></i>
+                                <span>Tagihan listrik bulan Maret berhasil dibayar.</span>
+                            </div>
+                            <small class="text-muted">15 Mar 2025</small>
+                        </div>
+                    </li>
+                    <!-- Notifikasi 4: Pesan Penting -->
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-exclamation-circle text-danger me-2"></i>
+                                <span>Penting: Jangan bagikan OTP kepada siapapun.</span>
+                            </div>
+                            <small class="text-muted">14 Mar 2025</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk Pengaturan -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel">Pengaturan Akun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Pengaturan -->
+                <form>
+                    <!-- Pengaturan Tema -->
+                    <div class="mb-3">
+                        <label for="themePreference" class="form-label">Preferensi Tema</label>
+                        <select class="form-select" id="themePreference">
+                            <option value="light">Mode Terang</option>
+                            <option value="dark">Mode Gelap</option>
+                        </select>
+                    </div>
+
+                    <!-- Pengaturan Keamanan -->
+                    <div class="mb-3">
+                        <label class="form-label">Keamanan Akun</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="twoFactorAuth">
+                            <label class="form-check-label" for="twoFactorAuth">
+                                Aktifkan Verifikasi 2 Langkah
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="emailVerification">
+                            <label class="form-check-label" for="emailVerification">
+                                Verifikasi Email untuk Transaksi
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pengaturan Notifikasi -->
+                    <div class="mb-3">
+                        <label class="form-label">Pengaturan Notifikasi</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="transactionNotifications">
+                            <label class="form-check-label" for="transactionNotifications">
+                                Notifikasi Transaksi
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="promoNotifications">
+                            <label class="form-check-label" for="promoNotifications">
+                                Notifikasi Promo dan Penawaran
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pengaturan Bahasa -->
+                    <div class="mb-3">
+                        <label for="languagePreference" class="form-label">Bahasa</label>
+                        <select class="form-select" id="languagePreference">
+                            <option value="id">Bahasa Indonesia</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+
+                    <!-- Backup dan Restore Data -->
+                    <div class="mb-3">
+                        <label class="form-label">Backup dan Restore Data</label>
+                        <button type="button" class="btn btn-primary" id="backupButton">Backup Data</button>
+                        <button type="button" class="btn btn-warning" id="restoreButton">Restore Data</button>
+                        <input type="file" id="restoreFileInput" style="display: none;" accept=".json">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<!-- Modal untuk Invite Friends -->
+<div class="modal fade" id="inviteFriendsModal" tabindex="-1" aria-labelledby="inviteFriendsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inviteFriendsModalLabel">Undang Teman</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Deskripsi -->
+                <p class="mb-4">
+                    Undang teman Anda untuk bergabung dan dapatkan bonus referral! Bagikan kode unik atau link di bawah ini kepada teman Anda.
+                </p>
+
+                <!-- Kode Unik -->
+                <div class="mb-3">
+                    <label for="referralCode" class="form-label">Kode Unik Anda</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="referralCode" value="ARIF123" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="copyCodeButton">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Link Referral -->
+                <div class="mb-3">
+                    <label for="referralLink" class="form-label">Link Referral Anda</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="referralLink" value="https://kolonisemut.my.id/ref/ARIF123" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="copyLinkButton">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bagikan via Media Sosial -->
+                <div class="mt-4">
+                    <p class="mb-2">Bagikan via:</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-info btn-sm">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </button>
+                        <button class="btn btn-danger btn-sm">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal untuk Recharge -->
+<div class="modal fade" id="rechargeModal" tabindex="-1" aria-labelledby="rechargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rechargeModalLabel">Isi Ulang Saldo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Recharge -->
+                <form id="rechargeForm">
+                    <!-- Jumlah Pengisian -->
+                    <div class="mb-3">
+                        <label for="rechargeAmount" class="form-label">Jumlah Pengisian</label>
+                        <input type="number" class="form-control" id="rechargeAmount" placeholder="Masukkan jumlah" required>
+                    </div>
+
+                    <!-- Metode Pembayaran -->
+                    <div class="mb-3">
+                        <label for="rechargeMethod" class="form-label">Metode Pembayaran</label>
+                        <select class="form-select" id="rechargeMethod" required>
+                            <option value="">Pilih metode</option>
+                            <option value="creditCard">Kartu Kredit</option>
+                            <option value="bankTransfer">Transfer Bank</option>
+                            <option value="eWallet">E-Wallet</option>
+                        </select>
+                    </div>
+
+                    <!-- Verifikasi OTP -->
+                    <div class="mb-3">
+                        <label for="rechargeOTP" class="form-label">Kode OTP</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="rechargeOTP" placeholder="Masukkan kode OTP" required>
+                            <button class="btn btn-outline-secondary" type="button" id="sendRechargeOTP">
+                                <i class="fas fa-paper-plane"></i> Kirim OTP
+                            </button>
+                        </div>
+                        <small class="text-muted">Kode OTP akan dikirim ke email/WhatsApp/SMS Anda.</small>
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Isi Ulang</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal untuk Withdraw -->
+<div class="modal fade" id="withdrawModal" tabindex="-1" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="withdrawModalLabel">Tarik Dana</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Withdraw -->
+                <form id="withdrawForm">
+                    <!-- Jumlah Penarikan -->
+                    <div class="mb-3">
+                        <label for="withdrawAmount" class="form-label">Jumlah Penarikan</label>
+                        <input type="number" class="form-control" id="withdrawAmount" placeholder="Masukkan jumlah" required>
+                    </div>
+
+                    <!-- Metode Penarikan -->
+                    <div class="mb-3">
+                        <label for="withdrawMethod" class="form-label">Metode Penarikan</label>
+                        <select class="form-select" id="withdrawMethod" required>
+                            <option value="">Pilih metode</option>
+                            <option value="bankTransfer">Transfer Bank</option>
+                            <option value="eWallet">E-Wallet</option>
+                        </select>
+                    </div>
+
+                    <!-- Verifikasi OTP -->
+                    <div class="mb-3">
+                        <label for="withdrawOTP" class="form-label">Kode OTP</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="withdrawOTP" placeholder="Masukkan kode OTP" required>
+                            <button class="btn btn-outline-secondary" type="button" id="sendWithdrawOTP">
+                                <i class="fas fa-paper-plane"></i> Kirim OTP
+                            </button>
+                        </div>
+                        <small class="text-muted">Kode OTP akan dikirim ke email/WhatsApp/SMS Anda.</small>
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-danger">Tarik Dana</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk Edit Foto Profil -->
+<div class="modal fade" id="editProfilePictureModal" tabindex="-1" aria-labelledby="editProfilePictureModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfilePictureModalLabel">Edit Foto Profil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Unggah Foto Baru -->
+                <div class="mb-4">
+                    <label for="uploadPhoto" class="form-label">Unggah Foto Baru</label>
+                    <input type="file" class="form-control" id="uploadPhoto" accept="image/*">
+                    <small class="text-muted">Format yang didukung: JPG, PNG, GIF (Maksimal 5MB).</small>
+                </div>
+
+                <!-- Edit Foto (Crop/Rotate) -->
+                <div class="mb-4">
+                    <label class="form-label">Edit Foto</label>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" id="cropPhotoButton">
+                            <i class="fas fa-crop"></i> Crop
+                        </button>
+                        <button class="btn btn-outline-secondary" id="rotatePhotoButton">
+                            <i class="fas fa-sync-alt"></i> Rotate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hapus Foto Profil -->
+                <div class="mb-4">
+                    <label class="form-label">Hapus Foto Profil</label>
+                    <button class="btn btn-outline-danger" id="deletePhotoButton">
+                        <i class="fas fa-trash"></i> Hapus Foto
+                    </button>
+                    <small class="text-muted">Foto profil akan dihapus dan diganti dengan foto default.</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" id="savePhotoButton">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+		<!-- Chat Box -->
+<div class="chat-box" id="chatBox">
+    <div class="chat-header">
+        <h5>Chat Internal</h5>
+        <button class="btn-close" id="closeChat"></button>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <!-- Pesan akan ditampilkan di sini -->
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Ketik pesan...">
+        <button id="sendMessageButton"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<!-- Tombol untuk membuka chat box -->
+<div class="chat-icon" id="chatIcon">
+    <i class="fas fa-comments"></i>
+</div>
+
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <!-- Chart.js Script -->
+    <script>
+        // Data Saldo dan Deposit
+        let totalSaldo = 155670080;
+        let saldoTersedia = 93402048; // 60% dari totalSaldo
+        let saldoTerpakai = totalSaldo - saldoTersedia;
+        let depositTersedia = 140103072; // 90% dari totalSaldo
+        let depositTerpakai = totalSaldo - depositTersedia;
+
+        // Update Total Saldo
+        document.getElementById('totalSaldo').innerText = `Rp ${totalSaldo.toLocaleString()}`;
+
+        // Update Persentase Saldo dan Deposit
+        document.getElementById('saldoPercentage').innerText = `${((saldoTersedia / totalSaldo) * 100).toFixed(0)}%`;
+        document.getElementById('depositPercentage').innerText = `${((depositTersedia / totalSaldo) * 100).toFixed(0)}%`;
+
+        // Pie Chart 1: Distribusi Saldo
+        const pieChart1 = document.getElementById('pieChart1').getContext('2d');
+        new Chart(pieChart1, {
+            type: 'pie',
+            data: {
+                labels: ['Saldo Tersedia', 'Saldo Terpakai'],
+                datasets: [{
+                    label: 'Distribusi Saldo',
+                    data: [saldoTersedia, saldoTerpakai],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Pie Chart 2: Distribusi Deposit
+        const pieChart2 = document.getElementById('pieChart2').getContext('2d');
+        new Chart(pieChart2, {
+            type: 'pie',
+            data: {
+                labels: ['Deposit Tersedia', 'Deposit Terpakai'],
+                datasets: [{
+                    label: 'Distribusi Deposit',
+                    data: [depositTersedia, depositTerpakai],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Bar Chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Saldo', 'Deposit', 'Anggota', 'Tagihan', 'Gaji', 'Belanja'],
+                datasets: [{
+                    label: 'Statistik',
+                    data: [saldoTersedia, depositTersedia, 25, 500000, 1200000, 300000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // FullCalendar
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    {
+                        title: 'Pembayaran Tagihan',
+                        start: '2025-03-17',
+                        color: '#007bff'
+                    },
+                    {
+                        title: 'Gaji Bulanan',
+                        start: '2025-03-20',
+                        color: '#28a745'
+                    },
+                    {
+                        title: 'Belanja Online',
+                        start: '2025-03-25',
+                        color: '#6f42c1'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+
+// Dark Mode Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const sunIcon = darkModeToggle.querySelector('.fa-sun');
+    const moonIcon = darkModeToggle.querySelector('.fa-moon');
+    const body = document.body;
+
+    // Cek preferensi dark mode dari localStorage
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+    // Set dark mode berdasarkan preferensi
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'inline-block';
+    } else {
+        body.classList.remove('dark-mode');
+        sunIcon.style.display = 'inline-block';
+        moonIcon.style.display = 'none';
+    }
+
+    // Toggle dark mode saat tombol diklik
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+
+        // Simpan preferensi dark mode di localStorage
+        localStorage.setItem('darkMode', isDark);
+
+        // Toggle ikon matahari dan bulan
+        sunIcon.style.display = isDark ? 'none' : 'inline-block';
+        moonIcon.style.display = isDark ? 'inline-block' : 'none';
+    });
+});
+
+        // Modal untuk Notifikasi
+        document.addEventListener('DOMContentLoaded', function() {
+            const bellIcon = document.querySelector('.bell-icon');
+            bellIcon.addEventListener('click', function() {
+                const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                notificationModal.show();
+            });
+
+            // Modal untuk Pengaturan
+            const gearIcon = document.querySelector('.gear-icon');
+            gearIcon.addEventListener('click', function() {
+                const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+                settingsModal.show();
+            });
+        });
+
+        // Modal untuk Invite Friends
+        document.addEventListener('DOMContentLoaded', function() {
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Tersalin ke clipboard: ' + text);
+                }).catch(err => {
+                    console.error('Gagal menyalin: ', err);
+                });
+            }
+
+            const copyCodeButton = document.getElementById('copyCodeButton');
+            copyCodeButton.addEventListener('click', function() {
+                const referralCode = document.getElementById('referralCode').value;
+                copyToClipboard(referralCode);
+            });
+
+            const copyLinkButton = document.getElementById('copyLinkButton');
+            copyLinkButton.addEventListener('click', function() {
+                const referralLink = document.getElementById('referralLink').value;
+                copyToClipboard(referralLink);
+            });
+
+            const inviteFriendsButton = document.querySelector('.invite-friends');
+            inviteFriendsButton.addEventListener('click', function() {
+                const inviteFriendsModal = new bootstrap.Modal(document.getElementById('inviteFriendsModal'));
+                inviteFriendsModal.show();
+            });
+        });
+
+        // Modal untuk Recharge dan Withdraw
+        document.addEventListener('DOMContentLoaded', function() {
+            function sendOTP(destination, callback) {
+                setTimeout(() => {
+                    const otp = Math.floor(1000 + Math.random() * 9000);
+                    alert(`OTP telah dikirim ke ${destination}. Kode OTP: ${otp}`);
+                    callback(otp);
+                }, 2000);
+            }
+
+            const withdrawModal = new bootstrap.Modal(document.getElementById('withdrawModal'));
+            const sendWithdrawOTPButton = document.getElementById('sendWithdrawOTP');
+            const withdrawForm = document.getElementById('withdrawForm');
+
+            sendWithdrawOTPButton.addEventListener('click', function() {
+                const destination = "email/WhatsApp/SMS Anda";
+                sendOTP(destination, (otp) => {
+                    document.getElementById('withdrawOTP').value = otp;
+                });
+            });
+
+            withdrawForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('withdrawAmount').value);
+                if (amount > totalSaldo) {
+                    alert('Saldo tidak mencukupi!');
+                    return;
+                }
+                totalSaldo -= amount;
+                document.getElementById('totalSaldo').innerText = `Rp ${totalSaldo.toLocaleString()}`;
+                alert('Penarikan dana berhasil diproses!');
+                withdrawModal.hide();
+            });
+
+            const rechargeModal = new bootstrap.Modal(document.getElementById('rechargeModal'));
+            const sendRechargeOTPButton = document.getElementById('sendRechargeOTP');
+            const rechargeForm = document.getElementById('rechargeForm');
+
+            sendRechargeOTPButton.addEventListener('click', function() {
+                const destination = "email/WhatsApp/SMS Anda";
+                sendOTP(destination, (otp) => {
+                    document.getElementById('rechargeOTP').value = otp;
+                });
+            });
+
+            rechargeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('rechargeAmount').value);
+                totalSaldo += amount;
+                document.getElementById('totalSaldo').innerText = `Rp ${totalSaldo.toLocaleString()}`;
+                alert('Pengisian saldo berhasil diproses!');
+                rechargeModal.hide();
+            });
+
+            const withdrawButton = document.querySelector('.btn.withdraw');
+            withdrawButton.addEventListener('click', function() {
+                withdrawModal.show();
+            });
+
+            const rechargeButton = document.querySelector('.btn.recharge');
+            rechargeButton.addEventListener('click', function() {
+                rechargeModal.show();
+            });
+        });
+
+        // Pengelola Foto Profil
+        document.addEventListener('DOMContentLoaded', function() {
+            const editProfilePictureModal = new bootstrap.Modal(document.getElementById('editProfilePictureModal'));
+            const profilePicture = document.querySelector('.profile-picture');
+            const uploadPhotoInput = document.getElementById('uploadPhoto');
+            const cropPhotoButton = document.getElementById('cropPhotoButton');
+            const rotatePhotoButton = document.getElementById('rotatePhotoButton');
+            const deletePhotoButton = document.getElementById('deletePhotoButton');
+            const savePhotoButton = document.getElementById('savePhotoButton');
+
+            profilePicture.addEventListener('click', function() {
+                editProfilePictureModal.show();
+            });
+
+            uploadPhotoInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar. Maksimal 5MB.');
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profilePicture.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            cropPhotoButton.addEventListener('click', function() {
+                alert('Fitur crop foto akan segera tersedia!');
+            });
+
+            rotatePhotoButton.addEventListener('click', function() {
+                alert('Fitur rotate foto akan segera tersedia!');
+            });
+
+            deletePhotoButton.addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin menghapus foto profil?')) {
+                    profilePicture.src = 'default-profile-picture.jpg';
+                }
+            });
+
+            savePhotoButton.addEventListener('click', function() {
+                alert('Perubahan foto profil berhasil disimpan!');
+                editProfilePictureModal.hide();
+            });
+        });
+        
+document.addEventListener('DOMContentLoaded', function() {
+    // Inisialisasi modal edit foto profil
+    const editProfilePictureModal = new bootstrap.Modal(document.getElementById('editProfilePictureModal'));
+
+    // Buka modal saat ikon pensil diklik
+    const editIcon = document.querySelector('.edit-icon');
+    editIcon.addEventListener('click', function() {
+        editProfilePictureModal.show();
+    });
+
+    // Tutup modal saat tombol Batal atau X diklik
+    const closeButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            editProfilePictureModal.hide();
+        });
+    });
+
+    // Simpan perubahan foto profil (opsional)
+    const savePhotoButton = document.getElementById('savePhotoButton');
+    savePhotoButton.addEventListener('click', function() {
+        alert('Perubahan foto profil berhasil disimpan!');
+        editProfilePictureModal.hide();
+    });
+});
+        
+// Fungsi untuk mengganti bahasa dan toggle bendera
+function changeLanguage(lang) {
+    const indonesiaFlag = document.getElementById('indonesiaFlag');
+    const englishFlag = document.getElementById('englishFlag');
+
+    if (lang === 'id') {
+        // Tampilkan bendera Indonesia dan sembunyikan bendera Inggris
+        indonesiaFlag.style.display = 'inline-block';
+        englishFlag.style.display = 'none';
+    } else if (lang === 'en') {
+        // Tampilkan bendera Inggris dan sembunyikan bendera Indonesia
+        indonesiaFlag.style.display = 'none';
+        englishFlag.style.display = 'inline-block';
+    }
+
+    // Simpan preferensi bahasa di localStorage
+    localStorage.setItem('language', lang);
+}
+
+// Event listener untuk tombol bahasa
+document.addEventListener('DOMContentLoaded', function() {
+    const indonesiaFlag = document.getElementById('indonesiaFlag');
+    const englishFlag = document.getElementById('englishFlag');
+
+    // Set bahasa default atau dari localStorage
+    const savedLanguage = localStorage.getItem('language') || 'id';
+    changeLanguage(savedLanguage);
+
+    // Toggle bahasa saat bendera diklik
+    indonesiaFlag.addEventListener('click', function() {
+        changeLanguage('en'); // Saat bendera Indonesia diklik, ganti ke bahasa Inggris
+    });
+
+    englishFlag.addEventListener('click', function() {
+        changeLanguage('id'); // Saat bendera Inggris diklik, ganti ke bahasa Indonesia
+    });
+});
+
+	// chatbox 
+	document.addEventListener('DOMContentLoaded', function() {
+    const chatBox = document.getElementById('chatBox');
+    const chatIcon = document.getElementById('chatIcon');
+    const closeChat = document.getElementById('closeChat');
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+    const sendMessageButton = document.getElementById('sendMessageButton');
+
+    // Buka chat box saat ikon chat diklik
+    chatIcon.addEventListener('click', function() {
+        chatBox.classList.add('active');
+    });
+
+    // Tutup chat box saat tombol close diklik
+    closeChat.addEventListener('click', function() {
+        chatBox.classList.remove('active');
+    });
+
+    // Kirim pesan saat tombol kirim diklik
+    sendMessageButton.addEventListener('click', function() {
+        const message = chatInput.value.trim();
+        if (message !== '') {
+            // Tambahkan pesan ke chat body
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = `Anda: ${message}`;
+            chatBody.appendChild(messageElement);
+
+            // Bersihkan input
+            chatInput.value = '';
+
+            // Scroll ke bawah chat body
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    });
+
+    // Kirim pesan saat tombol Enter ditekan
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessageButton.click();
+        }
+    });
+});
+	// backup & restore
+	document.addEventListener('DOMContentLoaded', function() {
+    const backupButton = document.getElementById('backupButton');
+    const restoreButton = document.getElementById('restoreButton');
+    const restoreFileInput = document.getElementById('restoreFileInput');
+
+    // Backup Data
+    backupButton.addEventListener('click', function() {
+        // Ambil data dari localStorage
+        const data = {
+            themePreference: localStorage.getItem('themePreference'),
+            languagePreference: localStorage.getItem('languagePreference'),
+            // Tambahkan data lain yang ingin di-backup
+        };
+
+        // Konversi data ke format JSON
+        const jsonData = JSON.stringify(data, null, 2);
+
+        // Buat file JSON dan unduh
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'backup-data.json';
+        a.click();
+        URL.revokeObjectURL(url);
+
+        alert('Backup data berhasil!');
+    });
+
+    // Restore Data
+    restoreButton.addEventListener('click', function() {
+        restoreFileInput.click(); // Buka dialog pemilihan file
+    });
+
+    restoreFileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    // Simpan data ke localStorage
+                    if (data.themePreference) {
+                        localStorage.setItem('themePreference', data.themePreference);
+                    }
+                    if (data.languagePreference) {
+                        localStorage.setItem('languagePreference', data.languagePreference);
+                    }
+                    // Tambahkan data lain yang ingin di-restore
+
+                    alert('Restore data berhasil! Silakan muat ulang halaman.');
+                } catch (error) {
+                    alert('File tidak valid. Pastikan file backup adalah file JSON yang benar.');
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
+});
+ 	
+document.addEventListener('DOMContentLoaded', function() {
+    const transactionNotifications = document.getElementById('transactionNotifications');
+
+    // Fungsi untuk menampilkan notifikasi transaksi
+    function showTransactionNotification(type, amount) {
+        const notification = document.createElement('div');
+        notification.classList.add('transaction-notification', type);
+
+        if (type === 'income') {
+            notification.textContent = `💰 Uang Masuk: Rp ${amount.toLocaleString()}`;
+        } else if (type === 'expense') {
+            notification.textContent = `💸 Uang Keluar: Rp ${amount.toLocaleString()}`;
+        }
+
+        // Tambahkan notifikasi ke container
+        transactionNotifications.appendChild(notification);
+
+        // Hapus notifikasi setelah animasi selesai
+        setTimeout(() => {
+            notification.remove();
+        }, 5000); // Notifikasi hilang setelah 5 detik
+    }   
+    // Simulasi transaksi acak
+    function simulateTransaction() {
+        const types = ['income', 'expense'];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const amount = Math.floor(Math.random() * 1980000) + 10000; // Jumlah acak antara 10.000 dan 1.000.000
+
+        showTransactionNotification(type, amount);
+
+        // Jalankan simulasi setiap 10 detik (diperlambat)
+        setTimeout(simulateTransaction, 10000);
+    }
+
+    // Mulai simulasi transaksi
+    simulateTransaction();
+});
+
+		// saldo
+		document.addEventListener('DOMContentLoaded', function() {
+    const transactionNotifications = document.getElementById('transactionNotifications');
+    const totalSaldoElement = document.getElementById('totalSaldo');
+
+    // Variabel saldo
+    let totalSaldo = 155670080; // Saldo awal
+
+    // Fungsi untuk memperbarui tampilan saldo
+    function updateSaldo() {
+        totalSaldoElement.textContent = `Rp ${totalSaldo.toLocaleString()}`;
+    }
+
+    // Fungsi untuk menampilkan notifikasi transaksi
+    function showTransactionNotification(type, amount) {
+        const notification = document.createElement('div');
+        notification.classList.add('transaction-notification', type);
+
+        if (type === 'income') {
+            notification.textContent = `💰 Uang Masuk: Rp ${amount.toLocaleString()}`;
+            totalSaldo += amount; // Tambah saldo
+        } else if (type === 'expense') {
+            notification.textContent = `💸 Uang Keluar: Rp ${amount.toLocaleString()}`;
+            totalSaldo -= amount; // Kurangi saldo
+        }
+
+        // Perbarui tampilan saldo
+        updateSaldo();
+
+        // Tambahkan notifikasi ke container
+        transactionNotifications.appendChild(notification);
+
+        // Hapus notifikasi setelah animasi selesai
+        setTimeout(() => {
+            notification.remove();
+        }, 5000); // Notifikasi hilang setelah 5 detik
+    }
+
+    // Simulasi transaksi acak
+    function simulateTransaction() {
+        const types = ['income', 'expense'];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const amount = Math.floor(Math.random() * 15005000) + 100000; // Jumlah acak antara 100.000 dan 15.005.000
+
+        showTransactionNotification(type, amount);
+
+        // Jalankan simulasi setiap 7 detik (diperlambat)
+        setTimeout(simulateTransaction, 7000);
+    }
+
+    // Mulai simulasi transaksi
+    simulateTransaction();
+});
+    </script>
+</body>
+</html>
