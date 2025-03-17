@@ -78,7 +78,10 @@
             const password = document.getElementById('password').value;
 
             // Simulasi login berhasil
-            if (email && password) {
+            if (email === 'user123@email.com' && password === 'pass123') {
+                // Simpan status login di localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Berhasil!',
