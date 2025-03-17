@@ -456,7 +456,10 @@ body.dark-mode {
     </div>
     <h1 class="display-5">Arif Tirtana</h1>
     <p class="lead">ID: 457321W</p>
+    
+<button id="logoutButton" class="btn btn-danger logout-button">Logout</button>
 </div>
+
         <div class="invite-friends">
             <i class="fas fa-user-plus"></i> Invite Friends
         </div>
@@ -1588,6 +1591,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mulai simulasi transaksi
     simulateTransaction();
 });
+   // Periksa status login
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+        if (isLoggedIn !== 'true') {
+            // Jika belum login, redirect ke halaman login
+            window.location.href = 'login.html';
+        }
+
+        // Logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn'); // Hapus status login
+            window.location.href = 'login.html'; // Redirect ke halaman login
+        });
     </script>
 </body>
 </html>
